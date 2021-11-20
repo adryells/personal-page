@@ -41,19 +41,10 @@ class SocialController:
 
     def get_social_medias(self):
         session = Config.session
-        socials = session.query(Social).all()
+        socials = session.query(Social).filter(Social.active == True).all()
 
         if not socials:
             raise Exception("Don't have any social")
 
-        return socials.__dict__()
-
-    def get_social_by_id(self, socialid: int):
-        session = Config.session
-        social = session.query(Social).filter(socialid=socialid).one()
-
-        if not social:
-            raise Exception("Social not found")
-
-        return social.__dict__()
+        return socials
 

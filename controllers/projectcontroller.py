@@ -54,7 +54,8 @@ class ProjectController:
     def get_projects(self) -> list:
         session = Config.session
 
-        projects = session.query(Project).all()
+        projects = session.query(Project).filter(Project.active == True).all()
+
 
         return projects
 
