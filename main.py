@@ -3,7 +3,6 @@ from flask import Flask, render_template, jsonify, url_for
 from controllers.postcontroller import PostController
 from controllers.projectcontroller import ProjectController
 from controllers.socialcontroller import  SocialController
-from controllers.technologycontroller import TechnologyController
 
 app = Flask(__name__)
 
