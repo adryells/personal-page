@@ -1,12 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{% block title %}Pagina Inicial{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-{{projects}}
+<main>
+    {%block content%}
+    <section class="grade">
+        <section class="tema">
+            <h3>QUEM SOU?</h3>
+            <section class="bloco-index">
+                Olá, eu sou o Paulo Adryell, 18 anos, desenvolvedor back-end python e grande fã de One Piece hehe.
+                Estou iniciando no mercado de trabalho e me aperfeiçoando na stack: [Flask, GraphQL, SQLAlchemy).
+                Meio clichê mas meu objetivo na area da programação é contribuir com o avanço da sociedade, desde resolver problemas municipais a galaticos ahuahuas quem sabe né.
+            </section>
+        </section>
+
+        <section class="tema">
+            <h3>O QUE FAÇO?</h3>
+            <section class="bloco-index">
+                Atualmente trabalho como trainee na linda empresa Puzzl Software House e estou aprendendo muito, essa oportunidade está sendo um grande up em minha carreira.
+                Academicamente, terminei há pouco tempo o curso técnico em informática do IFMA e continuo na área agora no 2º periodo de Ciência da Computação na mesma instituição.
+                Paralelamente ao trabalho e ao curso, estou a montar uns projetinhos pessoais melhores, em busca de um portifolio de qualidade.
+            </section>
+        </section>
+    </section>
+
+    <section class="grade-prolog">
+        <section class="tema prolog">
+            <h3><a href="http://127.0.0.1:5000/projects">MEUS PROJETOS</a></h3>
+            <section class="bloco-index bloco-prolog">
+
+            </section>
+        </section>
+    </section>
+    {%endblock%}
+
+
+
+</main>
 
 </body>
 </html>

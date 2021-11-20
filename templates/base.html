@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <script src="https://kit.fontawesome.com/b71b4c83fa.js" crossorigin="anonymous"></script>
+    <link href="./43645.ico" rel="shortcut icon"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {%endblock%}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&display=swap');
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <a href="http://127.0.0.1:5000/"><li>Inicio</li></a>
+            <a href="http://127.0.0.1:5000/blog"><li>Blog</li></a>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    {%block content%}{%endblock%}
+</main>
+
+
+<footer>
+    <div id="socials">
+        {% for social in socials%}
+             <a href="{{social.link}}">
+                <i class="{{social.media}}"></i>
+            </a>
+        {% endfor %}
+     </div>
+    <p>Desenvolvido por: <a href="github.com/adryells">Adryell</a></p>
+</footer>
+</body>
+</html>
