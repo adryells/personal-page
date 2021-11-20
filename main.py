@@ -1,17 +1,55 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, url_for
+
+from controllers.postcontroller import PostController
 from controllers.projectcontroller import ProjectController
-from controllers import postcontroller, projectcontroller, socialcontroller, technologycontroller
+from controllers.socialcontroller import  SocialController
+from controllers.technologycontroller import TechnologyController
 
 app = Flask(__name__)
 
 
 @app.route('/', methods=['GET'])
 def index():
-    controller = ProjectController
-    projects = controller.get_projects(controller)
-    return render_template('index.html', projects=projects)
+
+    social_controller = SocialController
+    technology_controller = TechnologyController
+
+    social =  social_controller.get_social_medias(social_controller)
+    techs = technology_controller.get_technologies(technology_controller)
+
+    return render_template('index.html', socials=social, techs=techs)
+
+
+
+@app.route('/blog', methods=['GET'])
+def blog():
+
+    blog_controller = PostController
+    social_controller = SocialController
+
+    blog = blog_controller.get_posts(blog_controller)
+    social = social_controller.get_social_medias(social_controller)
+
+    return render_template('blog.html', blogs=blog, socials=social)
+
+
+@app.route('/projects', methods=['GET'])
+def projects():
+
+    project_controller = ProjectController
+    social_controller = SocialController
+
+    projects = project_controller.get_projects(project_controller)
+    social = social_controller.get_social_medias(social_controller)
+
+    return render_template('projects.html', projects=projects, socials=social)
+
+
+@app.route('/administracao_do_portifolio', methods=['GET'])
+def admin():
+    return render_template('admin.html')
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
 
