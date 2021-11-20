@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session, declarative_base
-from sqlalchemy import create_engine, Column, Integer, String, Boolean
+from sqlalchemy import create_engine, Column, Integer, String, Boolean, MetaData
 
 
 class Config:
@@ -7,6 +7,7 @@ class Config:
     engine = create_engine("sqlite:///YELLpersonalpage.db", echo=True, future=True,
                            connect_args={'check_same_thread': False})
     session = Session(engine, future=True)
+    metadata = MetaData(engine)
 
 
 class Post(Config.Base):
@@ -51,3 +52,5 @@ class Social(Config.Base):
     def __repr__(self):
         return f"Social(id={self.socialid}, name={self.name}"
 
+
+Config.session.commit()

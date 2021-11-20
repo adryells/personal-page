@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, url_for
+from flask import Flask, render_template
 
 from controllers.postcontroller import PostController
 from controllers.projectcontroller import ProjectController
@@ -11,12 +11,10 @@ app = Flask(__name__)
 def index():
 
     social_controller = SocialController
-    technology_controller = TechnologyController
 
     social =  social_controller.get_social_medias(social_controller)
-    techs = technology_controller.get_technologies(technology_controller)
 
-    return render_template('index.html', socials=social, techs=techs)
+    return render_template('index.html', socials=social)
 
 
 
