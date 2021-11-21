@@ -6,11 +6,20 @@
 <body>
 
 <main>
-{%block content%}
-{%for project in projects%}
-    {{project.name}}
-{%endfor%}
-{%endblock%}
+
+    {%block content%}
+    <section class="grade-content">
+        {%for project in projects%}
+                <section class="bloco-content">
+                    <a href="{{project.link}}">
+                        <h2>{{project.title}}</h2>
+                        <p>{{project.bigdescription}}</p>
+                    </a>
+                 </section>
+        {%endfor%}
+    </section>
+    {%endblock%}
+
 </main>
 
 </body>

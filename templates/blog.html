@@ -6,7 +6,20 @@
 <body>
 
 <main>
-{%block content%}kkkkkkkkkkkkkkkkkkk{%endblock%}
+{%block content%}
+    {%for post in posts%}
+        <section class="bloco-content">
+            <a href="{{post.link}}">
+                <h2>{{post.title}}</h2>
+                <p>{{post.description}}</p>
+            </a>
+         </section>
+    {%endfor%}
+
+    {%if not posts%}
+        <h1>Sem posts recentes</h1>
+    {%endif%}
+{%endblock%}
 </main>
 
 </body>
