@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{post.title}}{% endblock %}</title>
+</head>
+<body>
+<main>
+    {%block content%}
+    <section class="grade aside-posts"></section>
+    <section class="grade post">
+        {{post.title}}
+        <hr>
+        {{post.content}}
+    </section>
+    <section class="grade aside-projects"></section>
+    {%endblock%}
+
+</main>
+</body>
+</html>

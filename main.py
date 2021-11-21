@@ -14,11 +14,14 @@ def index():
     project_controller = ProjectController
 
     social =  social_controller.get_social_medias(social_controller)
-    project = project_controller.get_projects(project_controller)
+    project = project_controller.get_projects_to_home(project_controller)
 
     return render_template('index.html', socials=social, projects=project)
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 @app.route('/blog', methods=['GET'])
 def blog():
@@ -30,6 +33,20 @@ def blog():
     social = social_controller.get_social_medias(social_controller)
 
     return render_template('blog.html', posts=blog, socials=social)
+
+
+@app.route('/blog/<int:postid>', methods=['GET'])
+def blog_post(postid: int = 1):
+
+    blog_controller = PostController
+    project_controller = ProjectController
+    social_controller = SocialController
+
+    post = blog_controller.get_post_by_id(blog_controller, postid)
+    social = social_controller.get_social_medias(social_controller)
+
+    return render_template('post.html', post=post, socials=social)
+
 
 
 @app.route('/projects', methods=['GET'])
@@ -47,6 +64,9 @@ def projects():
 @app.route('/administracao_do_portifolio', methods=['GET'])
 def admin():
     return render_template('admin.html')
+
+
+
 
 
 if __name__ == '__main__':

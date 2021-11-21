@@ -55,7 +55,7 @@ class PostController:
 
     def get_post_by_id(self, postid: int):
         session = Config.session
-        post = session.query(Post).filter(postid=postid).one()
+        post = session.query(Post).filter(Post.postid==postid).one()
 
         if not post:
             raise Exception("Post not found")

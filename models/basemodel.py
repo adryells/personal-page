@@ -19,6 +19,9 @@ class Post(Config.Base):
     content = Column(String, nullable=False)
     media = Column(String)
     active = Column(Boolean, default=True)
+    # likes = Column(Integer, default=0)
+    # comments = Column(Integer, default=0)
+    # views = Column(Integer, default=0)
 
     def __repr__(self):
         return f"Post(id={self.postid}, title={self.title}"

@@ -12,7 +12,7 @@
             <h3>QUEM SOU?</h3>
             <section class="bloco-index">
                 Olá, eu sou o Paulo Adryell, 18 anos, desenvolvedor back-end python e grande fã de One Piece hehe.
-                Estou iniciando no mercado de trabalho e me aperfeiçoando na stack: [Flask, GraphQL, SQLAlchemy).
+                Estou iniciando no mercado de trabalho e me aperfeiçoando na stack: [Flask, GraphQL, SQLAlchemy].
                 Meio clichê mas meu objetivo na area da programação é contribuir com o avanço da sociedade, desde resolver problemas municipais a galaticos ahuahuas quem sabe né.
             </section>
         </section>
@@ -29,15 +29,26 @@
 
     <section class="grade-prolog">
         <section class="tema prolog">
-            <h3><a href="http://127.0.0.1:5000/projects">MEUS PROJETOS</a></h3>
+            <a href="http://127.0.0.1:5000/projects"><h3>MEUS PROJETOS</h3></a>
             <section class="bloco-index bloco-prolog">
+                {%if projects%}
+                    {%for project in projects%}
+                        <section class="project-home">
+                            <h1><a href="{{project.link}}">{{project.title}}</a></h1>
+                            <p>{{project.shortdescription}}</p>
+                            <hr>
+                        </section>
+                    {%endfor%}
 
+                {%endif%}
+
+                {%if not projects%}
+                    <h1>Sem trabalhos recentes</h1>
+                {%endif%}
             </section>
         </section>
     </section>
     {%endblock%}
-
-
 
 </main>
 

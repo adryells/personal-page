@@ -6,31 +6,26 @@
     color: white;
 }
 
-/* width */
-::-webkit-scrollbar {
-  width: 15px;
+*::-webkit-scrollbar {
+    width: 19px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+*::-webkit-scrollbar-track {
+    background: #251070;
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
+*::-webkit-scrollbar-thumb {
+    background-color: #ebe8f3;
+    border-radius: 20px;
+    border: 2px solid #6565b3;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
 
 body{
     background-image: url("media/vpwv14k.png");
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: black;
+    background-color: purple;
     opacity: 0.9;
 }
 
@@ -60,7 +55,7 @@ a i:hover{
 
 nav ul{
     display: flex;
-    position: fixed;
+    position: absolute;
     right: 10%;
     top: 2%;
 }
@@ -140,8 +135,62 @@ main section.bloco-prolog{
     width: 100%;
     padding: 5%;
     height: 100%;
+    overflow-y: auto;
 }
 
+.project-home h1{
+    margin-top: 0;
+    font-size: 25px;
+}
+
+.project-home p{
+    font-size: 15px;
+}
+
+.grade-content{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 26%;
+}
+
+.bloco-content{
+    background-color: #2E4C6D;
+    width: 20%;
+    height: 300px;
+    margin-top: 1%;
+    margin-left: 2%;
+    border-radius: 2%;
+    -webkit-transition: all 0.5s 0s ease;
+    -moz-transition: all 0.5s 0s ease;
+    -o-transition: all 0.5s 0s ease;
+    transition: all 0.5s 0s ease;
+}
+
+.bloco-content:hover{
+    width: 21%;
+}
+
+.bloco-content a h2{
+    margin-top: 0;
+    font-size: 25px;
+    background: #FC997C;
+    padding: 2%;
+}
+
+.bloco-content a h2:hover{
+    color: black;
+}
+
+.bloco-content p{
+    font-size: 18px;
+    padding: 2%;
+}
+
+.prolog a h3:hover{
+    opacity: 2;
+    color: black;
+}
 
 
 footer{
