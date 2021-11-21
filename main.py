@@ -11,10 +11,12 @@ app = Flask(__name__)
 def index():
 
     social_controller = SocialController
+    project_controller = ProjectController
 
     social =  social_controller.get_social_medias(social_controller)
+    project = project_controller.get_projects(project_controller)
 
-    return render_template('index.html', socials=social)
+    return render_template('index.html', socials=social, projects=project)
 
 
 
@@ -27,7 +29,7 @@ def blog():
     blog = blog_controller.get_posts(blog_controller)
     social = social_controller.get_social_medias(social_controller)
 
-    return render_template('blog.html', blogs=blog, socials=social)
+    return render_template('blog.html', posts=blog, socials=social)
 
 
 @app.route('/projects', methods=['GET'])
