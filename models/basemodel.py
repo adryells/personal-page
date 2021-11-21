@@ -4,7 +4,7 @@ from sqlalchemy import create_engine, Column, Integer, String, Boolean, MetaData
 
 class Config:
     Base = declarative_base()
-    engine = create_engine("sqlite:///YELLpersonalpage.db", echo=True, future=True,
+    engine = create_engine("sqlite:///database.db", echo=True, future=True,
                            connect_args={'check_same_thread': False})
     session = Session(engine, future=True)
     metadata = MetaData(engine)
@@ -51,6 +51,3 @@ class Social(Config.Base):
 
     def __repr__(self):
         return f"Social(id={self.socialid}, name={self.name}"
-
-
-Config.session.commit()
