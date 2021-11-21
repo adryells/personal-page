@@ -1,3 +1,5 @@
+from random import choice
+
 from models.basemodel import Config, Project
 from sqlalchemy import select
 
@@ -66,4 +68,19 @@ class ProjectController:
             raise Exception("Project not found")
 
         return project
+
+    def get_projects_to_home(self) -> list:
+        session = Config.session
+        all_projects = session.query(Project).filter(Project.active==True).all()
+        projects = [project for project in all_projects]
+        projects_to_home = []
+        for i in range(len(projects)):
+            project = choice(projects)
+            projects_to_home.append(project)
+            projects.remove(project)
+
+        return projects_to_home
+
+
+
 
