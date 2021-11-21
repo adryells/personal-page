@@ -43,8 +43,5 @@ class SocialController:
         session = Config.session
         socials = session.query(Social).filter(Social.active == True).all()
 
-        if not socials:
-            raise Exception("Don't have any social")
-
         return socials
 

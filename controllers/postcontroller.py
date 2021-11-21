@@ -51,9 +51,6 @@ class PostController:
         session = Config.session
         posts = session.query(Post).filter(Post.active == True).all()
 
-        if not posts:
-            raise Exception("Don't have any post")
-
         return posts
 
     def get_post_by_id(self, postid: int):

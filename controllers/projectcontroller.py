@@ -56,7 +56,6 @@ class ProjectController:
 
         projects = session.query(Project).filter(Project.active == True).all()
 
-
         return projects
 
     def get_project_by_id(self, projectid: int):
