@@ -74,7 +74,7 @@ class ProjectController:
         all_projects = session.query(Project).filter(Project.active==True).all()
         projects = [project for project in all_projects]
         projects_to_home = []
-        for i in range(len(projects)):
+        for i in range(4):
             project = choice(projects)
             projects_to_home.append(project)
             projects.remove(project)

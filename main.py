@@ -18,11 +18,18 @@ def index():
 
     return render_template('index.html', socials=social, projects=project)
 
-
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html'), 404
+    social_controller = SocialController
+    social = social_controller.get_social_medias(social_controller)
+    return render_template('404.html', socials=social), 404
 
+
+@app.errorhandler(500)
+def page_not_found_500(e):
+    social_controller = SocialController
+    social = social_controller.get_social_medias(social_controller)
+    return render_template('404.html', socials=social), 500
 @app.route('/blog', methods=['GET'])
 def blog():
 
@@ -43,9 +50,15 @@ def blog_post(postid: int = 1):
     social_controller = SocialController
 
     post = blog_controller.get_post_by_id(blog_controller, postid)
+    posts = blog_controller.get_posts(blog_controller)
     social = social_controller.get_social_medias(social_controller)
+    projects = project_controller.get_projects_to_home(project_controller)
 
-    return render_template('post.html', post=post, socials=social)
+    if not post:
+        return render_template('404.html'), 404
+
+
+    return render_template('post.html', post=post, posts=posts, socials=social, projects=projects)
 
 
 
@@ -60,6 +73,12 @@ def projects():
 
     return render_template('projects.html', projects=projects, socials=social)
 
+@app.route('/paymeacoffee', methods=['GET'])
+def pay_me_a_coffee():
+    social_controller = SocialController
+    social = social_controller.get_social_medias(social_controller)
+
+    return render_template('paymeacoffee.html', socials=social)
 
 @app.route('/administracao_do_portifolio', methods=['GET'])
 def admin():
