@@ -71,7 +71,7 @@ def update_post(postid:int):
     blog_controller = PostController
 
     tags = [session.query(Tag).filter(Tag.tagid == tagid).one() for tagid in [5,6,4]]
-    blog_controller.update_post(blog_controller,postid,{"title":"mentira sio", "active":False, "content":"jjjj", "description":"llll", "media":"kkskksks", "tags":tags})
+    blog_controller.update_post(blog_controller,postid,{"title":"mentira sio", "active":False, "content":"jjjj", "description":"lllllqdqidhwpowpowpgobwgpwbpbpwopw<br>jlsbblaiviviebwiviwwkwbvkwwebeeheeheh<br>jlslslkvllsvslslslsslvvvv<br>", "media":"kkskksks", "tags":tags})
 
     return f"Post {postid} atualizado"
 

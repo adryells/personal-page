@@ -87,6 +87,19 @@ a i:hover{
     margin: 5%;
 }
 
+#rating{
+    position: relative;
+    display: flex;
+    background: black;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.rating-data{
+    margin: 3%;
+}
 
 nav ul{
     display: flex;
@@ -224,6 +237,7 @@ main section.bloco-prolog{
     margin-top: 5%;
     margin-left: 2%;
     border-radius: 2%;
+
     -webkit-transition: all 0.5s 0s ease;
     -moz-transition: all 0.5s 0s ease;
     -o-transition: all 0.5s 0s ease;
@@ -247,7 +261,8 @@ main section.bloco-prolog{
 
 .bloco-content p{
     font-size: 18px;
-    padding: 2%;
+    height: 60%;
+    width: 100%;
 }
 
 .prolog a h3:hover{
