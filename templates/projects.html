@@ -7,7 +7,15 @@
 
 <main>
 
+
+
     {%block content%}
+        <section id="orders">
+            <section id="order_area">
+                  <a href="http://127.0.0.1:5000/projects/recent"><button class="order-value">Recentes</button></a>
+                  <a href="http://127.0.0.1:5000/projects/old"><button class="order-value">Antigos</button></a>
+            </section>
+        </section>
     <section class="grade-content">
         {%for project in projects%}
                 <section class="bloco-content">

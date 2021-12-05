@@ -1,19 +1,22 @@
-from models.basemodel import Config, Post
+from models.basemodel import Config, Post, Tag
 
 
 class PostController:
 
-    def add_post(self, title: str, description: str, content:str, published:bool, media:str, active:bool) -> Post:
+    def add_post(self, title: str, description: str, content:str, media:str, active:bool, tags: list) -> Post:
         session = Config.session
 
         new_post = Post(
             title=title,
             description=description,
             content=content,
-            published=published,
             media=media,
-            active=active
+            active=active,
             )
+
+        tags = [session.query(Tag).filter(Tag.tagid == tagid).one() for tagid in tags]
+        for tag in tags:
+            new_post.tags.append(tag)
 
         session.add(new_post)
         session.commit()
@@ -36,20 +39,25 @@ class PostController:
         if "content" in changes.keys():
             post.content = changes["content"]
 
-        if "published" in changes.keys():
-            post.published = changes["published"]
-
         if "media" in changes.keys():
             post.media = changes["media"]
 
         if "active" in changes.keys():
             post.active = changes["active"]
 
+        if "tags" in changes.keys():
+            post.tags = changes["tags"]
+
         session.commit()
 
-    def get_posts(self):
+    def get_posts(self, orderby: str = "recent"):
         session = Config.session
-        posts = session.query(Post).filter(Post.active == True).all()
+        if orderby:
+            if orderby == "recent":
+                posts = session.query(Post).filter(Post.active == True).order_by(Post.datecreated.desc()).all()
+
+            if orderby == "old":
+                posts = session.query(Post).filter(Post.active == True).order_by(Post.datecreated.asc()).all()
 
         return posts
 

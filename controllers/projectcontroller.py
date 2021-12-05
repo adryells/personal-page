@@ -53,10 +53,14 @@ class ProjectController:
 
         session.commit()
 
-    def get_projects(self) -> list:
+    def get_projects(self, orderby: str = "recent"):
         session = Config.session
+        if orderby:
+            if orderby == "recent":
+                projects = session.query(Project).filter(Project.active == True).order_by(Project.datecreated.desc()).all()
 
-        projects = session.query(Project).filter(Project.active == True).all()
+            if orderby == "old":
+                projects = session.query(Project).filter(Project.active == True).order_by(Project.datecreated.asc()).all()
 
         return projects
 
