@@ -26,16 +26,18 @@ class Post(Config.Base):
 
     postid = Column(Integer, primary_key=True)
     title = Column(String, nullable=False)
+    englishtitle = Column(String, default="title")
     description = Column(String, nullable=False)
+    descriptionenglish = Column(String, default="description")
     content = Column(String, nullable=False)
+    contentenglish = Column(String, default="content")
     media = Column(String)
     active = Column(Boolean, default=True)
     likes = Column(Integer, default=0)
     comments = Column(Integer, default=0)
     views = Column(Integer, default=0)
     datecreated = Column(Date, default=datetime.date.today())
-    children = relationship("Tag",
-                            secondary=tag_posts)
+    tags = relationship("Tag", secondary=tag_posts)
 
     def __repr__(self):
         return f"Post(id={self.postid}, title={self.title}"
@@ -46,12 +48,16 @@ class Project(Config.Base):
 
     projectid = Column(Integer, primary_key=True)
     title = Column(String, nullable=False)
+    englishtitle = Column(String, default="title")
     shortdescription = Column(String, nullable=False)
+    shortdescriptionenglish = Column(String, default="shortdescription")
     bigdescription = Column(String, default=shortdescription)
+    bigdescriptionenglish = Column(String, default="bigdescription")
     link = Column(String, nullable=False)
     media = Column(String)
     active = Column(Boolean, default=True)
     datecreated = Column(Date, default=datetime.date.today())
+    tags = relationship("Tag", secondary=tag_projects)
 
     def __repr__(self):
         return f"Project(id={self.projectid}, title={self.title}"
@@ -74,6 +80,7 @@ class Tag(Config.Base):
 
     tagid = Column(Integer, primary_key=True)
     name = Column(String, nullable=False, default="tag_name")
+    active = Column(Boolean, default=True)
 
     def __repr__(self):
         return f"Tag(id={self.tagid}, name={self.name}"
