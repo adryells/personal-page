@@ -1,0 +1,70 @@
+body{
+    background: black;
+    color: white;
+}
+
+#headindex{
+    color: white;
+    font-size: 30px;
+}
+
+section h1{
+    color: white;
+}
+
+#maindex{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 650px;
+}
+
+.bloco-admin{
+    background: white;
+    width: 33%;
+    margin: 1%;
+    margin-left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+.bloco-admin h1{
+    color: black;
+}
+
+main{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 1400px;
+    margin-bottom: 5%;
+}
+
+.painel{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    margin: 1%;
+    margin-left: 2%;
+    background: red;
+    margin-bottom: 10%;
+}
+
+.func{
+    flex-basis: 35%;
+    margin: 1%;
+    background: white;
+}
+
+footer{
+    margin-top: 20%;
+    position: relative;
+    width: 100%;
+    height: 100px;
+    bottom: 0;
+    background: green;
+}
