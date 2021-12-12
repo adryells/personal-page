@@ -1,4 +1,7 @@
 from models.basemodel import Config, Post, Tag
+from bs4 import BeautifulSoup
+import requests
+import asyncio
 
 
 class PostController:
@@ -52,6 +55,8 @@ class PostController:
 
     def get_posts(self, orderby: str = "recent"):
         session = Config.session
+
+        posts = session.query(Post).filter(Post.active == True).order_by(Post.datecreated.desc()).all()
         if orderby:
             if orderby == "recent":
                 posts = session.query(Post).filter(Post.active == True).order_by(Post.datecreated.desc()).all()
@@ -61,7 +66,7 @@ class PostController:
 
         return posts
 
-    def get_post_by_id(self, postid: int):
+    def get_post_by_id(self, postid: int) -> Post:
         session = Config.session
         post = session.query(Post).filter(Post.postid==postid).one_or_none()
 
@@ -69,3 +74,22 @@ class PostController:
             return False
 
         return post
+
+    async def get_number_comments(postid: int = 1):
+        url = f'http://127.0.0.1:5000/blog/{postid}'
+        res = requests.get(url)
+        html_page = res.text
+
+        soup = BeautifulSoup(html_page, 'html.parser')
+        soup.prettify()
+
+        number_comments = soup.findAll("span", {"class": "fb:comments-count"})
+        print(number_comments)
+        return await number_comments
+
+    def add_like_to_post(self, postid: int):
+        session = Config.session
+        post = session.query(Post).filter(Post.postid == postid).one()
+
+        post.likes += 1
+        session.commit()
