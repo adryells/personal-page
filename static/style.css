@@ -7,7 +7,7 @@
 }
 
 *::-webkit-scrollbar {
-    width: 19px;
+    width: 10px;
 }
 
 *::-webkit-scrollbar-track {
@@ -16,8 +16,9 @@
 
 *::-webkit-scrollbar-thumb {
     background-color: #ebe8f3;
-    border-radius: 20px;
-    border: 2px solid #6565b3;
+    border-radius: 10px;
+    border: 1px solid #6565b3;
+    opacity: 0.6;
 }
 
 
@@ -78,14 +79,19 @@ a i:hover{
 
 #orders{
     left: 200px;
-    bottom: 10%;
     display: flex;
-    margin: 2%;
+    margin: 1%;
+    flex-wrap: wrap;
+    width: 20%;
 }
 
 #order_area{
-    margin: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
 }
+
 
 #rating{
     position: relative;
@@ -126,6 +132,7 @@ nav ul a li:hover{
 main{
     position: relative;
     display: flex;
+    flex-wrap: wrap;
     margin-top: 6%;
 }
 
@@ -144,20 +151,101 @@ main section.grade{
 .post-h2{
     position: absolute;
     text-align: center;
-    background: black;
+    font-size: 40px;
     width: 100%;
-    margin-top: 0;
     padding: 3%;
 }
 
 .post-content{
-    margin-top: 12%;
+    padding-top: 2%;
+    margin-top: 10%;
+    padding-left: 2%;
     height: 800px;
     width: 100%;
     overflow-y: auto;
-    background: blue;
 }
 
+#comments{
+    background: black;
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 10%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#comments form{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 200px:
+}
+
+.field{
+    margin: 1%;
+    margin-left: 4%;
+    color: black;
+}
+
+#send_comment{
+    width: 200px;
+}
+
+#send_comment a{
+    position: relative;
+    color: black;
+}
+
+#comments form textarea{
+    color: black;
+}
+
+.comment{
+    margin-left: 1%;
+    margin-top: 1%;
+    background: black;
+    width: 100%;
+}
+
+#content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#like-func{
+    font-size: 40px;
+    width: 80px;
+    background: black;
+}
+
+
+#like-func:hover{
+    cursor: pointer;
+}
+
+#like-func i{
+    background: black;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+#like-func i:hover{
+}
+
+#comment-content{
+    width: 90%;
+    overflow-x: auto;
+    white-space: wrap;
+    padding:2px;
+    margin: 1px;
+}
+
+
+#commenter{
+    font-weight: bold;
+    color:Red;
+}
 
 main section.tema{
     background: #FFAB4C;
