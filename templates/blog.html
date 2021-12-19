@@ -20,14 +20,6 @@
                 <h2>{{post.title}}</h2>
                 <p>{{post.description}}</p>
             </a>
-            <section id="rating">
-                <i class="far fa-heart"></i>
-                <section class="rating-data">{{post.likes}}</section>
-                <i class="far fa-comment"></i>
-                <section class="rating-data">{{post.comments|length}}</section>
-                <i class="far fa-eye"></i>
-                <section class="rating-data">{{post.views}}</section>
-            </section>
          </section>
     {%endfor%}
     </section>

@@ -7,34 +7,10 @@
 <body>
 <main>
     {%block content%}
-    <script>
-    function change_color(){
-        like_button = document.getElementById("like-func")
-        like_button_heart = document.getElementsByTagName('i');
-        like_button_heart[0].style.backgroundColor = "red";
-        like_button.style.backgroundColor = "red";
-    }
-</script>
-    <form method="post" action="http://127.0.0.1:5000/blog/{{post.postid}}/addlike" id="form-like">
-        <button type="submit" id="like-func" onclick="change_color()"><i class="far fa-heart"></i></button>
-    </form>
+
     <h2 class="post-h2">{{post.title}}</h2>
     <section class="post-content">{{post.content}}</section>
 
-    <div id="comments">
-        <form method="post" action="http://127.0.0.1:5000/blog/{{post.postid}}/addcomment" id="form-comment">
-            <input type="text" id="name" name="nickname" placeholder="Nickname" class="field" value="Anônimo">
-            <textarea id="content" name="content" rows="4" cols="50" class="field" placeholder="Escreva seu comentário aqui!"></textarea>
-            <button type="submit" id="send_comment" class="field">Enviar</button>
-        </form>
-
-        {% for comment in comments%}
-        <div class="comment">
-            <div id="commenter">{{comment.commenter}}</div>
-            <p id="comment-content">{{comment.content}}</p>
-        </div>
-        {%endfor%}
-    </div>
     {%endblock%}
 
 </main>
