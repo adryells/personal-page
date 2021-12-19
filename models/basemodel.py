@@ -21,11 +21,6 @@ tag_projects = Table('projecttags', Config.Base.metadata,
     Column('tag_id', ForeignKey('tags.tagid'))
 )
 
-comment_post = Table('commentspost', Config.Base.metadata,
-    Column('post_id', ForeignKey('posts.postid')),
-    Column('comment_id', ForeignKey('comments.commentid'))
-)
-
 class Post(Config.Base):
     __tablename__ = "posts"
 
@@ -38,12 +33,8 @@ class Post(Config.Base):
     contentenglish = Column(String, default="content")
     media = Column(String)
     active = Column(Boolean, default=True)
-    likes = Column(Integer, default=0)
-    comments = Column(Integer, default=0)
-    views = Column(Integer, default=0)
     datecreated = Column(Date, default=datetime.date.today())
     tags = relationship("Tag", secondary=tag_posts)
-    comments = relationship("Comment", secondary=comment_post)
 
 
     def __repr__(self):
@@ -91,21 +82,3 @@ class Tag(Config.Base):
 
     def __repr__(self):
         return f"Tag(id={self.tagid}, name={self.name}"
-
-
-class Comment(Config.Base):
-    __tablename__ = "comments"
-
-    commentid = Column(Integer, primary_key=True)
-    commenter = Column(String, default="Anônimo")
-    content = Column(String, nullable=False)
-    active = Column(Boolean, default=True)
-    datecreated = Column(Date, default=datetime.date.today())
-
-    def __repr__(self):
-        return f"Comment(id={self.commentid}, content={self.content}"
-
-
-
-
-
