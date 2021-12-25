@@ -1,38 +1,38 @@
 from flask import (
     Blueprint, render_template
 )
-bp = Blueprint('auth', __name__, url_prefix='/admin')
+bp = Blueprint('admin', __name__, url_prefix='/admin')
 
-@bp.route('/administracao_do_portifolio', methods=['GET'])
+@bp.route('/', methods=['GET'])
 def admin():
     return render_template('admin/admindex.html')
 
 
-@bp.route('/administracao_do_portifolio/posts', methods=['GET'])
+@bp.route('/posts', methods=['GET'])
 def admin_posts():
     return render_template('admin/admin_post.html')
 
 
-@bp.route('/administracao_do_portifolio/projects', methods=['GET'])
+@bp.route('/projects', methods=['GET'])
 def admin_projects():
     return render_template('admin/admin_project.html')
 
 
-@bp.route('/administracao_do_portifolio/social', methods=['GET'])
+@bp.route('/social', methods=['GET'])
 def admin_social():
     return render_template('admin/admin_social.html')
 
-@bp.route('/administracao_do_portifolio/colors', methods=['GET'])
+@bp.route('/colors', methods=['GET'])
 def admin_colors():
     return render_template('admin/admin_colors.html')
 
 
-@bp.route('/administracao_do_portifolio/home', methods=['GET'])
+@bp.route('/home', methods=['GET'])
 def admin_home():
     return render_template('admin/admin_home.html')
 
 
-@bp.route('/administracao_do_portifolio/data', methods=['GET'])
+@bp.route('/data', methods=['GET'])
 def admin_data():
     return render_template('admin/admin_gets.html')
 
