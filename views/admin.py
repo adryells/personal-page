@@ -1,11 +1,24 @@
 from flask import (
-    Blueprint, render_template
+    Blueprint, render_template, url_for, redirect, request
 )
-bp = Blueprint('admin', __name__, url_prefix='/admin')
 
-@bp.route('/', methods=['GET'])
-def admin():
-    return render_template('admin/admindex.html')
+from controllers.admincontroller import AdminController
+
+bp = Blueprint('admin', __name__, url_prefix='/admin')
+admincontroller = AdminController
+
+
+@bp.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        user_name = request.form['username']
+        user_password = request.form['password']
+        admin_is_ok = admincontroller.validate_admin_exists(admincontroller, user_name, user_password)
+
+        if admin_is_ok:
+            return render_template('admin/admindex.html')
+
+    return render_template("admin/login.html")
 
 
 @bp.route('/posts', methods=['GET'])

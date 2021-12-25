@@ -73,6 +73,7 @@ class Social(Config.Base):
     def __repr__(self):
         return f"Social(id={self.socialid}, name={self.name}"
 
+
 class Tag(Config.Base):
     __tablename__ = "tags"
 
@@ -82,3 +83,21 @@ class Tag(Config.Base):
 
     def __repr__(self):
         return f"Tag(id={self.tagid}, name={self.name}"
+
+
+class Admin(Config.Base):
+    __tablename__ = "admins"
+
+    adminid = Column(Integer, primary_key=True)
+    username = Column(String, nullable=False)
+    password = Column(String, nullable=False)
+    status = Column(Boolean, default=False)
+    token = Column(Boolean)
+
+    def __repr__(self):
+        return f"Admin(id={self.adminid}, name={self.username}"
+
+
+
+
+
