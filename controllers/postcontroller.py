@@ -29,27 +29,33 @@ class PostController:
     def update_post(self, postid: int, changes: dict):
         session = Config.session
         post = session.query(Post).filter_by(postid=postid).one()
+        modifieds = {}
 
         if not post:
             raise Exception("Post not found")
 
-        if "title" in changes.keys():
-            post.title = changes["title"]
+        for item in changes.items():
+            if item[1] != '':
+                # modifieds.append({f"{item[0]}": f"{item[1]}"})
+                modifieds[f"{item[0]}"] = item[1]
 
-        if "description" in changes.keys():
-            post.description = changes["description"]
+        if "title" in modifieds:
+            post.title = modifieds["title"]
 
-        if "content" in changes.keys():
-            post.content = changes["content"]
+        if "description" in modifieds:
+            post.description = modifieds["description"]
 
-        if "media" in changes.keys():
-            post.media = changes["media"]
+        if "content" in modifieds:
+            post.content = modifieds["content"]
 
-        if "active" in changes.keys():
-            post.active = changes["active"]
+        if "media" in modifieds:
+            post.media = modifieds["media"]
 
-        if "tags" in changes.keys():
-            post.tags = changes["tags"]
+        if "active" in modifieds:
+            post.active = bool(modifieds["active"])
+
+        if "tags" in modifieds:
+            post.tags = modifieds["tags"]
 
         session.commit()
 
