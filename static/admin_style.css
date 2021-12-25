@@ -49,6 +49,25 @@ main{
     color: black;
 }
 
+.admin-get{
+    width: 20%;
+    padding: 10px;
+}
+
+#project_admin, #admin-social, #post_admin, #admin-tag{
+    margin: 5%;
+    color: black;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#project_admin p, #project_admin a, #post_admin p, #admin-social p, #admin-social a{
+    width: 16em;
+    word-wrap: break-word;
+}
+
+
 .func div{
     background: red;
     margin: 1%;

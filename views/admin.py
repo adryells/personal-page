@@ -90,5 +90,10 @@ def admin_home():
 
 @bp.route('/data', methods=['GET'])
 def admin_data():
-    return render_template('admin/admin_gets.html')
+    posts = postcontroller.get_posts(postcontroller, "recent")
+    projects = projectcontroller.get_projects(projectcontroller, "recent")
+    socials = socialcontroller.get_social_medias(socialcontroller)
+    tags = tagcontroller.get_tags(tagcontroller)
+
+    return render_template('admin/admin_gets.html', posts=posts, projects=projects, socials=socials, tags=tags)
 
