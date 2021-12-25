@@ -36,9 +36,18 @@ class TagController:
 
         return projects
 
-    def get_tag_by_id(self, tagid: int):
+    def get_tag_by_id(self, tagid: int) -> Tag:
         session = Config.session
         tag = session.query(Tag).filter(Tag.tagid==tagid).one()
+
+        if not tag:
+            raise Exception("Tag not found")
+
+        return tag
+
+    def get_tag_by_name(self, name: str) -> Tag:
+        session = Config.session
+        tag = session.query(Tag).filter(Tag.name == name).one()
 
         if not tag:
             raise Exception("Tag not found")
