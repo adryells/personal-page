@@ -1,12 +1,21 @@
 from flask import (
-    Blueprint, render_template, url_for, redirect, request
+    Blueprint, render_template, request
 )
 
 from controllers.admincontroller import AdminController
+from controllers.postcontroller import PostController
+from controllers.projectcontroller import ProjectController
+from controllers.socialcontroller import SocialController
+from controllers.tagcontroller import TagController
+from models.basemodel import Config
 
 bp = Blueprint('admin', __name__, url_prefix='/admin')
-admincontroller = AdminController
 
+admincontroller = AdminController
+postcontroller = PostController
+projectcontroller = ProjectController
+socialcontroller = SocialController
+tagcontroller = TagController
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -21,9 +30,31 @@ def login():
     return render_template("admin/login.html")
 
 
-@bp.route('/posts', methods=['GET'])
-def admin_posts():
-    return render_template('admin/admin_post.html')
+@bp.route('/posts', methods=['GET', 'POST', 'PUT'])
+@bp.route('/posts/<orderby>', methods=['GET'])
+def admin_posts(orderby: str = "recent"):
+    session = Config.session
+    if request.method == "POST":
+        postcontroller.add_post(
+            self=postcontroller,
+            title=request.form['title'],
+            description=request.form['description'],
+            content=request.form['content'],
+            media=request.form['media'],
+            active=bool(request.form['active']),
+            tags=request.form['tags']
+        )
+
+    if request.method == "PUT":
+        postcontroller.update_post(
+            postcontroller,
+            request.form['postid'],
+            changes=request.form['changes']
+        )
+
+    session.commit()
+    posts = postcontroller.get_posts(postcontroller)
+    return render_template('admin/admin_post.html', posts=posts)
 
 
 @bp.route('/projects', methods=['GET'])
