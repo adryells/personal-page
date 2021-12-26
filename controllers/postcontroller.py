@@ -36,7 +36,6 @@ class PostController:
 
         for item in changes.items():
             if item[1] != '':
-                # modifieds.append({f"{item[0]}": f"{item[1]}"})
                 modifieds[f"{item[0]}"] = item[1]
 
         if "title" in modifieds:

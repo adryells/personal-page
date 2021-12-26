@@ -1,8 +1,35 @@
 {% extends "admin/admin.html" %}
 
 {%block content%}
-    <section class="painel" id="social-painel">
-        <section class="func" id="create_social"></section>
-        <section class="func" id="update_social"></section>
-    </section>
+<section class="func admin-form-social" id="create_social">
+    <form action="http://127.0.0.1:5000/admin/social/addsocial" method="post">
+        <input type="text" name="name" placeholder="Name" required="required" />
+        <input type="text" name="media" placeholder="media" required="required" />
+        <input type="text" name="active" placeholder="active" required="required" />
+        <input type="text" name="link" placeholder="link" required="required"/>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+    </form>
+</section>
+
+<section class="admin-socials" id="get_socials_admin">
+{% for social in socials%}
+    <div id="admin-get-social">
+        <h1>{{social.socialid}} - {{social.name}}</h1>
+        <a href="{{social.link}}">{{social.link}}</a>
+        <p>{{social.media}}</p>
+        <p>{{social.active}}</p>
+    </div>
+{% endfor %}
+</section>
+
+<section class="func admin-form-social" id="update_social">
+    <form action="http://127.0.0.1:5000/admin/social/updatesocial" method="post">
+        <input type="text" name="socialid" placeholder="id" required="required" />
+        <input type="text" name="name" placeholder="Name"  />
+        <input type="text" name="media" placeholder="media"  />
+        <input type="text" name="active" placeholder="active" />
+        <input type="text" name="link" placeholder="link" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+    </form>
+</section>
 {%endblock%}

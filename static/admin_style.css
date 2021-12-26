@@ -42,13 +42,6 @@ main{
     justify-content: space-around;
 }
 
-.func{
-    flex-basis: 30%;
-    margin: 1%;
-    background: white;
-    color: black;
-}
-
 .admin-get{
     width: 20%;
     padding: 10px;
@@ -62,11 +55,37 @@ main{
     border-radius: 5px;
 }
 
-#project_admin p, #project_admin a, #post_admin p, #admin-social p, #admin-social a{
+#project_admin p, #project_admin a, #post_admin p, #admin-social p, #admin-social a, #admin-get-social p, #admin-get-social a{
     width: 16em;
     word-wrap: break-word;
 }
 
+.func{
+    flex-basis: 30%;
+    margin: 1%;
+    background: white;
+    color: black;
+}
+
+#admin-get-social{
+    background: white;
+    padding: 10px;
+    color: black;
+    border-radius: 2%;
+    margin: 1%;
+}
+
+#admin-get-social h1{
+    color: black
+}
+
+.admin-form-social{
+    width: 20%;
+}
+
+.admin-socials{
+    width: 20%;
+}
 
 .func div{
     background: red;

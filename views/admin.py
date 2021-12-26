@@ -36,9 +36,6 @@ def login():
 @bp.route('/posts', methods=['GET', 'POST', 'PUT'])
 @bp.route('/posts/<orderby>', methods=['GET'])
 def admin_posts(orderby: str = "recent"):
-    session = Config.session
-
-    session.commit()
     posts = postcontroller.get_posts(postcontroller)
     return render_template('admin/admin_post.html', posts=posts)
 
@@ -76,7 +73,35 @@ def admin_projects():
 
 @bp.route('/social', methods=['GET'])
 def admin_social():
-    return render_template('admin/admin_social.html')
+    socials = socialcontroller.get_social_medias(socialcontroller)
+    return render_template('admin/admin_social.html', socials=socials)
+
+
+@bp.route('/social/addsocial', methods=['PUT', 'POST'])
+def admin_add_social():
+    socialcontroller.add_social(
+        self=socialcontroller,
+        active=bool(request.form['active']),
+        media=request.form['media'],
+        link=request.form['link'],
+        name=request.form['name']
+    )
+
+    return redirect("/admin/social")
+
+
+@bp.route('/social/updatesocial', methods=['PUT', 'POST'])
+def admin_update_social():
+    socialcontroller.update_social(
+        self=socialcontroller,
+        changes=request.form,
+        socialid=request.form['socialid']
+    )
+
+    return redirect("/admin/social")
+
+
+
 
 @bp.route('/colors', methods=['GET'])
 def admin_colors():

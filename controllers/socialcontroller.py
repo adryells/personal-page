@@ -10,7 +10,7 @@ class SocialController:
             name=name,
             link=link,
             media=media,
-            active=active
+            active=bool(active)
         )
 
         session.add(new_social)
@@ -21,21 +21,27 @@ class SocialController:
     def update_social(self, socialid: int, changes: dict):
         session = Config.session
         social = session.query(Social).filter_by(socialid=socialid).one()
+        modifieds = {}
 
         if not social:
             raise Exception("Social not found")
 
-        if "name" in changes.keys():
-            social.name = changes["name"]
+        for item in changes.items():
+            if item[1] != '':
+                modifieds[f"{item[0]}"] = item[1]
 
-        if "link" in changes.keys():
-            social.link = changes["link"]
+        if "name" in modifieds.keys():
+            social.name = modifieds["name"]
 
-        if "media" in changes.keys():
-            social.media = changes["media"]
+        if "link" in modifieds.keys():
+            social.link = modifieds["link"]
 
-        if "active" in changes.keys():
-            social.active = changes["active"]
+        if "media" in modifieds.keys():
+            social.media = modifieds["media"]
+
+        if "active" in modifieds.keys():
+            active = bool(int(modifieds["active"]))
+            social.active = active
 
         session.commit()
 
