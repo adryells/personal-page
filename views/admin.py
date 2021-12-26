@@ -8,7 +8,6 @@ from controllers.postcontroller import PostController
 from controllers.projectcontroller import ProjectController
 from controllers.socialcontroller import SocialController
 from controllers.tagcontroller import TagController
-from models.basemodel import Config
 
 bp = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -68,7 +67,35 @@ def admin_update_post():
 
 @bp.route('/projects', methods=['GET'])
 def admin_projects():
-    return render_template('admin/admin_project.html')
+    projects = projectcontroller.get_projects(projectcontroller, "recent")
+    return render_template('admin/admin_project.html', projects=projects)
+
+
+@bp.route('/projects/addproject', methods=['POST'])
+def admin_add_project():
+    if request.method == "POST":
+        projectcontroller.add_project(
+            self=postcontroller,
+            title=request.form['title'],
+            shortdescription=request.form['short'],
+            bigdescription=request.form['big'],
+            active=bool(int(request.form['active'])),
+            media=request.form['media'],
+            link=request.form['link']
+        )
+
+    return redirect("/admin/projects")
+
+@bp.route('/projects/updateproject', methods=['POST', 'PUT'])
+def admin_update_project():
+    if request.method == "POST":
+        projectcontroller.update_project(
+            self=postcontroller,
+            projectid=request.form['projectid'],
+            changes=request.form
+        )
+
+    return redirect("/admin/projects")
 
 
 @bp.route('/social', methods=['GET'])
@@ -99,8 +126,6 @@ def admin_update_social():
     )
 
     return redirect("/admin/social")
-
-
 
 
 @bp.route('/colors', methods=['GET'])

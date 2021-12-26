@@ -55,7 +55,7 @@ main{
     border-radius: 5px;
 }
 
-#project_admin p, #project_admin a, #post_admin p, #admin-social p, #admin-social a, #admin-get-social p, #admin-get-social a{
+#project_admin p, #project_admin a, #post_admin p, #admin-social p, #admin-social a, #admin-get-social p, #admin-get-social a, #admin-get-project p, #admin-get-project a{
     width: 16em;
     word-wrap: break-word;
 }
@@ -67,7 +67,7 @@ main{
     color: black;
 }
 
-#admin-get-social{
+#admin-get-social, #admin-get-project{
     background: white;
     padding: 10px;
     color: black;
@@ -75,15 +75,21 @@ main{
     margin: 1%;
 }
 
-#admin-get-social h1{
+#admin-get-social h1, #admin-get-project h1{
     color: black
 }
 
 .admin-form-social{
-    width: 20%;
+    width: 30%;
 }
 
-.admin-socials{
+.admin-form-project{
+    width: 35%;
+    background: white;
+}
+
+
+.admin-socials, .admin-projects{
     width: 20%;
 }
 

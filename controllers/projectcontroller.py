@@ -5,7 +5,7 @@ from sqlalchemy import select
 
 class ProjectController:
 
-    def add_project(self, title: str, shortdescription: str, bigdescription: str, published: bool, media: str, link: str, active: bool) -> Project:
+    def add_project(self, title: str, shortdescription: str, bigdescription: str,  media: str, link: str, active: bool) -> Project:
         session = Config.session
 
         new_project = Project(
@@ -13,7 +13,6 @@ class ProjectController:
             shortdescription=shortdescription,
             bigdescription=bigdescription,
             link=link,
-            published=published,
             media=media,
             active=active
         )
@@ -27,29 +26,32 @@ class ProjectController:
         session = Config.session
         project = session.query(Project).filter_by(projectid=projectid).one()
 
+        modifieds = {}
+
         if not project:
             raise Exception("Project not found")
 
-        if "title" in changes.keys():
-            project.title = changes["title"]
+        for item in changes.items():
+            if item[1] != '':
+                modifieds[f"{item[0]}"] = item[1]
 
-        if "shortdescription" in changes.keys():
-            project.shortdescription = changes["shortdescription"]
+        if "title" in modifieds.keys():
+            project.title = modifieds["title"]
 
-        if "bigdescription" in changes.keys():
-            project.bigdescription = changes["bigdescription"]
+        if "shortdescription" in modifieds.keys():
+            project.shortdescription = modifieds["short"]
 
-        if "link" in changes.keys():
-            project.link = changes["link"]
+        if "bigdescription" in modifieds.keys():
+            project.bigdescription = modifieds["big"]
 
-        if "published" in changes.keys():
-            project.published = changes["published"]
+        if "link" in modifieds.keys():
+            project.link = modifieds["link"]
 
-        if "media" in changes.keys():
-            project.media = changes["media"]
+        if "media" in modifieds.keys():
+            project.media = modifieds["media"]
 
-        if "active" in changes.keys():
-            project.active = changes["active"]
+        if "active" in modifieds.keys():
+            project.active = bool(int(modifieds["active"]))
 
         session.commit()
 
