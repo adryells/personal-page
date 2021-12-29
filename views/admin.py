@@ -4,6 +4,7 @@ from flask import (
 from werkzeug.utils import redirect
 
 from controllers.admincontroller import AdminController
+from controllers.homecontentcontroller import HomeContentController
 from controllers.postcontroller import PostController
 from controllers.projectcontroller import ProjectController
 from controllers.socialcontroller import SocialController
@@ -86,6 +87,7 @@ def admin_add_project():
 
     return redirect("/admin/projects")
 
+
 @bp.route('/projects/updateproject', methods=['POST', 'PUT'])
 def admin_update_project():
     if request.method == "POST":
@@ -136,6 +138,19 @@ def admin_colors():
 @bp.route('/home', methods=['GET'])
 def admin_home():
     return render_template('admin/admin_home.html')
+
+
+@bp.route('/home/updatetheme', methods=['POST'])
+def admin_update_theme():
+    hccontroller = HomeContentController()
+
+    theme = request.form["theme"]
+    content = request.form["content"]
+
+    hccontroller.change_actual_content_from_theme(theme, content)
+
+    return redirect("/admin/home")
+
 
 
 @bp.route('/data', methods=['GET'])

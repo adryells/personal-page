@@ -98,6 +98,21 @@ class Admin(Config.Base):
         return f"Admin(id={self.adminid}, name={self.username}"
 
 
+class HomeContent(Config.Base):
+    __tablename__ = "homecontents"
+
+    homecontentid = Column(Integer, primary_key=True)
+    content = Column(String, nullable=False)
+    theme = Column(String, nullable=False)
+
+    def __repr__(self):
+        return f"HomeContent(id={self.homecontentid}, content={self.content}"
+
+
+
+
+
+
 
 
 
