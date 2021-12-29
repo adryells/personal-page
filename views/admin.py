@@ -17,6 +17,7 @@ postcontroller = PostController
 projectcontroller = ProjectController
 socialcontroller = SocialController
 tagcontroller = TagController
+hccontroller = HomeContentController
 
 
 @bp.route('/login', methods=['GET', 'POST'])
@@ -129,25 +130,23 @@ def admin_update_social():
 
     return redirect("/admin/social")
 
-
-@bp.route('/colors', methods=['GET'])
-def admin_colors():
-    return render_template('admin/admin_colors.html')
-
-
 @bp.route('/home', methods=['GET'])
 def admin_home():
-    return render_template('admin/admin_home.html')
+
+    whoiam = hccontroller.get_actual_who_i_am(hccontroller)
+    whatido = hccontroller.get_actual_what_i_do(hccontroller)
+    contents = hccontroller.get_all_contents(hccontroller)
+
+    return render_template('admin/admin_home.html', whatido=whatido, whoiam=whoiam, contents=contents)
 
 
 @bp.route('/home/updatetheme', methods=['POST'])
 def admin_update_theme():
-    hccontroller = HomeContentController()
 
     theme = request.form["theme"]
     content = request.form["content"]
 
-    hccontroller.change_actual_content_from_theme(theme, content)
+    hccontroller.change_actual_content_from_theme(hccontroller, theme, content)
 
     return redirect("/admin/home")
 
