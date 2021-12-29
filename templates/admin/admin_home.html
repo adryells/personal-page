@@ -1,12 +1,25 @@
 {% extends "admin/admin.html" %}
 
 {%block content%}
-    <section class="painel" id="home-painel">
-        <section class="func" id="whoiam">
+<section class="func admin-form-home" id="whoiam">
+    <h1>Who i am</h1>
+    <form action="http://127.0.0.1:5000/admin/home/updatetheme" method="post">
+        <input type="text" name="theme" placeholder="Name" required="required" />
+        <textarea name="content" placeholder="Conteudo" cols="80" rows="15" autocapitalize="sentences" required></textarea>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+    </form>
+</section>
 
-        </section>
-        <section class="func" id="whatido">
+<section class="admin-home" id="get_home_contents_admin">
+{% for content in contents%}
+    <div id="admin-get-hc">
+        <h1>{{content.theme}}</h1>
+        <p>{{content.content}}</p>
+    </div>
+{% endfor %}
+</section>
 
-        </section>
-    </section>
 {%endblock%}
+
+
+

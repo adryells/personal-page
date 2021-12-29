@@ -55,7 +55,7 @@ main{
     border-radius: 5px;
 }
 
-#project_admin p, #project_admin a, #post_admin p, #admin-social p, #admin-social a, #admin-get-social p, #admin-get-social a, #admin-get-project p, #admin-get-project a{
+#project_admin p, #project_admin a, #post_admin p, #admin-social p, #admin-social a, #admin-get-social p, #admin-get-social a, #admin-get-project p, #admin-get-project a, #admin-get-hc p, #admin-get-hc a{
     width: 16em;
     word-wrap: break-word;
 }
@@ -67,7 +67,7 @@ main{
     color: black;
 }
 
-#admin-get-social, #admin-get-project{
+#admin-get-social, #admin-get-project, #admin-get-hc{
     background: white;
     padding: 10px;
     color: black;
@@ -75,11 +75,11 @@ main{
     margin: 1%;
 }
 
-#admin-get-social h1, #admin-get-project h1{
-    color: black
+#admin-get-social h1, #admin-get-project h1, #get_home_contents_admin, #whoiam h1, #admin-get-hc h1{
+    color: black;
 }
 
-.admin-form-social{
+.admin-form-social, .admin-form-home{
     width: 30%;
 }
 
@@ -89,7 +89,7 @@ main{
 }
 
 
-.admin-socials, .admin-projects{
+.admin-socials, .admin-projects, .admin-home{
     width: 20%;
 }
 

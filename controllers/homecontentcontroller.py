@@ -21,3 +21,9 @@ class HomeContentController:
 
         self.session.commit()
 
+    def get_all_contents(self):
+        contents = self.session.query(HomeContent).all()
+
+        return contents
+
+

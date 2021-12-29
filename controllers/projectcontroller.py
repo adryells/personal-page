@@ -57,6 +57,7 @@ class ProjectController:
 
     def get_projects(self, orderby: str = "recent"):
         session = Config.session
+        projects = session.query(Project).filter(Project.active == True).all()
         if orderby:
             if orderby == "recent":
                 projects = session.query(Project).filter(Project.active == True).order_by(Project.datecreated.desc()).all()
