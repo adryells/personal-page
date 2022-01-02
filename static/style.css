@@ -133,21 +133,31 @@ main section.grade{
     width: 40%;
 }
 
+#post{
+    background: white;
+    color: black;
+    width: 100%;
+}
+
 .post-h2{
     position: absolute;
     text-align: center;
     font-size: 40px;
     width: 100%;
     padding: 3%;
+    color: black;
 }
 
 .post-content{
+    color: black;
+    padding: 5%;
     padding-top: 2%;
     margin-top: 10%;
     padding-left: 2%;
     height: 800px;
     width: 100%;
     overflow-y: auto;
+    word-wrap: break-word;
 }
 
 main section.tema{
@@ -219,12 +229,16 @@ main section.bloco-prolog{
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 26%;
+    padding: 2%;
 }
 
 .bloco-content{
+    word-wrap: break-word;
     background-color: #2E4C6D;
+    padding: 2px;
+    text-align: center;
     width: 20%;
-    height: 300px;
+    height: 330px;
     margin-top: 5%;
     margin-left: 2%;
     border-radius: 2%;
@@ -261,6 +275,15 @@ main section.bloco-prolog{
     color: black;
 }
 
+#comments{
+    background: white;
+    padding-top: 1%;
+    padding-left: 3%;
+    padding-bottom: 10%;
+    width: 100%;
+    margin: 0;
+    box-sizing: content-box;
+}
 
 footer{
     background: black;
