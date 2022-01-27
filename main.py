@@ -36,5 +36,5 @@ if __name__ == '__main__':
     app.register_blueprint(paym.bp)
     app.register_blueprint(blog.bp)
     app.register_blueprint(projects.bp)
-    app.run(debug=True)
+    app.run()
 
