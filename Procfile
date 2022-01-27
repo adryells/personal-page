@@ -1,1 +1,1 @@
-web: python -m main.py main:app
+web: python -m main main:app
