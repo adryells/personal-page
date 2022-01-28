@@ -9,14 +9,14 @@
 {%block content%}
         <section id="orders">
             <section id="order_area">
-                  <a href="http://127.0.0.1:5000/blog/recent"><button class="order-value">Recentes</button></a>
-                  <a href="http://127.0.0.1:5000/blog/old"><button class="order-value">Antigos</button></a>
+                  <a href="https://adryell.herokuapp.com/blog/recent"><button class="order-value">Recentes</button></a>
+                  <a href="https://adryell.herokuapp.com/blog/old"><button class="order-value">Antigos</button></a>
             </section>
         </section>
     <section class="grade-content">
     {%for post in posts%}
         <section class="bloco-content">
-            <a href="http://127.0.0.1:5000/blog/{{post.postid}}">
+            <a href="https://adryell.herokuapp.com/blog/{{post.postid}}">
                 <h2>{{post.title}}</h2>
                 <p>{{post.description}}</p>
             </a>
