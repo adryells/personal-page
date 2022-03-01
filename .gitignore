@@ -1,4 +1,6 @@
 /venv
 .idea
-views/__pycache__/
-controllers/__pycache__/
+api/controllers/__pycache__/
+/__pycache__/
+/api/__pycache__/
+
