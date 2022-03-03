@@ -2,6 +2,8 @@ from sqlalchemy import Column, Integer, String, Boolean
 
 from api.db.db import Base
 
+# TODO: to implement token
+
 
 class Admin(Base):
     __tablename__ = "admins"
