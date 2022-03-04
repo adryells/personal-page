@@ -1,13 +1,15 @@
 import random
 
-from api.db.db import Base, engine, get_session
+from api.db.db import get_session, engine, Base
 from api.db.models.Admin import Admin
 from api.db.models.HomeContent import HomeContent
 from api.db.models.Post import Post
 from api.db.models.Project import Project
 from api.db.models.Social import Social
 from api.db.models.Tag import Tag
+
 from faker import Faker
+
 
 session = get_session()
 fake = Faker()
@@ -51,7 +53,7 @@ def populate_tags():
         ("organização", "organization"), ("finanças", "finances"), ("vida", "life"),
         ("rotina", "routine"), "php", "flask", "fastapi", ("estudos", "studies")
     ]
-    for _ in range(len(tags)):
+    for index, _ in enumerate(tags):
         has_english_name = False if isinstance(_, str) else True
         if has_english_name:
             tagdb = session.query(Tag).filter(Tag.portuguese_name == _[0], Tag.active == True).one_or_none()
@@ -63,8 +65,8 @@ def populate_tags():
                 continue
 
         tag = Tag(
-            portuguese_name=tags[_] if isinstance(_, str) else tag[_][0],
-            english_name=tags[_] if isinstance(_, str) else tag[_][1],
+            portuguese_name=tags[index] if isinstance(_, str) else tags[index][0],
+            english_name=tags[index] if isinstance(_, str) else tags[index][1],
             active=True
         )
 
@@ -75,7 +77,7 @@ def populate_tags():
 def populate_posts():
     for _ in range(8):
         title = [fake.sentence(nb_words=random.randint(3, 8)) for _ in range(2)]
-        description = [fake.paragraph(nb_sentences=random.randint(1)) for _ in range(2)]
+        description = [fake.paragraph(nb_sentences=random.randint(1, 3)) for _ in range(2)]
         content = [fake.paragraph(nb_sentences=random.randint(2, 5)) for _ in range(2)]
 
         postdb = session.query(Post).filter(
@@ -90,12 +92,12 @@ def populate_posts():
 
         else:
             post = Post(
-                title=...,
-                english_title=...,
-                description=...,
-                english_decription=...,
-                content=...,
-                english_content=...,
+                title=title[0],
+                english_title=title[1],
+                description=description[0],
+                english_description=description[1],
+                content=content[0],
+                english_content=content[1],
                 active=True,
             )
 
@@ -122,7 +124,7 @@ def populate_socials():
         '<i class="fab fa-instagram" aria-hidden="true"></i>'
     ]
 
-    for _ in range(names):
+    for _ in range(len(names)):
         social_network = session.query(Social).filter(
             Social.active == True,
             Social.name == names[_],
@@ -147,7 +149,8 @@ def populate_projects():
     # TODO: to get from github api
 
     titles = [
-
+        "imcPHP", "Tempo_Anime", "aestheticCALC", "PageStyleConfiguration", "PassaTempo-Eureka",
+        "CalculatorJS", "Django-Polls", "AgendaDeContatos", "biblios", "Caxias"
     ]
 
     descriptions = [
@@ -158,14 +161,18 @@ def populate_projects():
          "Settinger style page was done using DOM JS"),
         ("Jogo desenvolvido em JavaScript para passar o tempo, acerte o Botão correto!",
          "Game developed in JS to pass the time, shot the correct button"),
+        ("Calculadora desenvolvida em JS", "Calculator developed in JS"),
         ("Mini-votação desenvolvida estudando a documentação Django.", "Small pooler developed studying django doc"),
         ("Agenda de contatos desenvolvida utilizando o Web Framework Django e Bootstrap.",
          "Contact directory developed using the Django and Bootstrap Web Framework."),
-        ("calculadora de imc em php", "IMC Calculator in PHP"),
+        ("bibliotequinha virtual que tentei criar usando Django",
+         "little virtual library that I tried to create using Django"),
+        ("Website sobre caxias - MA, desenvolvido estudando css",
+         "Website about caxias - MA, developed by studying css")
     ]
 
     bigdescriptions = [
-
+        fake.paragraph(nb_sentences=random.randint(1, 4)) for _ in range(len(descriptions))
     ]
 
     link = [
@@ -180,20 +187,39 @@ def populate_projects():
         "https://github.com/adryells/biblios",
         "https://github.com/adryells/caxias",
     ]
+    for _ in range(len(titles)):
+        project = Project(
+            title=titles[_],
+            english_title=fake.sentence(nb_words=random.randint(1, 3)),
+            description=descriptions[_][0],
+            english_description=descriptions[_][1],
+            bigdescription=bigdescriptions[_],
+            english_bigdescription=fake.paragraph(nb_sentences=random.randint(5, 11)),
+            link=link[_]
+        )
 
-    project = Project(
-        title=...,
-        english_title=...,
-        description=...,
-        english_description=...,
-        bigdescription=...,
-        english_bigdescription=...,
-        link=...
-    )
+        project.tags = [
+            random.choice(session.query(Tag).filter(Tag.active == True).all()) for _ in range(random.randint(1, 3))
+        ]
 
-    project.tags = [
-        random.choice(session.query(Tag).filter(Tag.active == True).all()) for _ in range(random.randint(1, 3))
-    ]
+        session.add(project)
+
+
+def populate_database():
+    func_handler = {
+        "admin": populate_admin,
+        "home_content": populate_home_contents,
+        "tag": populate_tags,
+        "post": populate_posts,
+        "social": populate_socials,
+        "project": populate_projects
+    }
+
+    for key, value in func_handler.items():
+        value()
+
+    session.commit()
 
 
 Base.metadata.create_all(engine)
+populate_database()
