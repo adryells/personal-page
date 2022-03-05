@@ -1,8 +1,11 @@
-from graphene_sqlalchemy import SQLAlchemyObjectType
+import graphene
 
-from api.db.models.Admin import Admin
+from api.graphql.types.admin import AdminType
+from api.graphql.util import WaverGraphQLResolveInfo
 
 
-class Admin(SQLAlchemyObjectType):
-    class Meta:
-        model = Admin
+class Admin(graphene.ObjectType):
+    admin = graphene.Field(AdminType)
+
+    def resolve_admin(self, info: WaverGraphQLResolveInfo):
+        return info.context.admin

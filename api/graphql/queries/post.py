@@ -1,8 +1,12 @@
-from graphene_sqlalchemy import SQLAlchemyObjectType
+import graphene
 
 from api.db.models.Post import Post
+from api.graphql.types.post import PostType
+from api.graphql.util import WaverGraphQLResolveInfo
 
 
-class Post(SQLAlchemyObjectType):
-    class Meta:
-        model = Post
+class Post(graphene.ObjectType):
+    posts = graphene.List(PostType)
+
+    def resolve_posts(self, info: WaverGraphQLResolveInfo):
+        return info.context.session.query(Post).all()

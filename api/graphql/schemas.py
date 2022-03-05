@@ -9,14 +9,19 @@ from api.graphql.queries.tag import Tag
 from api.graphql.templates.config import custom_dark_make_graphiql_handler
 from starlette_graphene3 import GraphQLApp
 
+from api.graphql.util import MountGraphQLObject
 
-class Query(graphene.ObjectType):
-    admin = graphene.Field(type_=Admin)
-    homecontent = graphene.Field(type_=HomeContent)
-    post = graphene.Field(type_=Post)
-    project = graphene.Field(type_=Project)
-    social = graphene.Field(type_=Social)
-    tag = graphene.Field(type_=Tag)
+
+class Query(graphene.ObjectType,
+            MountGraphQLObject(Admin),
+            MountGraphQLObject(HomeContent),
+            MountGraphQLObject(Post),
+            MountGraphQLObject(Project),
+            MountGraphQLObject(Social),
+            MountGraphQLObject(Tag),
+            ):
+
+    pass
 
 
 class Mutation(graphene.ObjectType):
