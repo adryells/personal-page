@@ -1,6 +1,6 @@
 from sqlalchemy import Table, ForeignKey, Column, Integer, String, Boolean
 
-from api.db.db import Base
+from api.db import Base
 
 tag_posts = Table('tagposts', Base.metadata,
     Column('post_id', ForeignKey('posts.postid')),

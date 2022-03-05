@@ -2,7 +2,7 @@ import datetime
 from sqlalchemy import Column, Integer, String, Boolean, Date
 from sqlalchemy.orm import relationship
 
-from api.db.db import Base
+from api.db import Base
 from api.db.models.Tag import tag_projects
 
 

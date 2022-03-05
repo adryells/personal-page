@@ -3,7 +3,7 @@ import datetime
 from sqlalchemy import Column, String, Integer, Date, Boolean
 from sqlalchemy.orm import relationship
 
-from api.db.db import Base
+from api.db import Base
 from api.db.models.Tag import tag_posts
 
 # TODO: implement media

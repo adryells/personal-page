@@ -1,6 +1,6 @@
 import random
 from loguru import logger
-from api.db.db import get_session
+from api.db import get_session
 from api.db.models.Admin import Admin
 from api.db.models.HomeContent import HomeContent
 from api.db.models.Post import Post

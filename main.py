@@ -1,8 +1,8 @@
 import uvicorn
 from fastapi import FastAPI
 
-from api.db.db import init_db
 from api.graphql.schemas import graphql_app
+from api.utils.create_database import init_db
 from api.utils.populate_db import populate_database
 
 app = FastAPI()

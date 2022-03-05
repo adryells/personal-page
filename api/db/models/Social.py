@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Boolean
 
-from api.db.db import Base
+from api.db import Base
 
 
 class Social(Base):

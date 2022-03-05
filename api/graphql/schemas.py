@@ -2,13 +2,8 @@ import graphene
 from starlette.background import BackgroundTasks
 from starlette.requests import Request
 
-from api.db.db import get_session
-from api.graphql.queries.adminq import AdminQ
-from api.graphql.queries.homecontentq import HomeContentQ
-from api.graphql.queries.postq import PostQ
-from api.graphql.queries.project import Project, ProjectQ
-from api.graphql.queries.socialq import SocialQ
-from api.graphql.queries.tag import TagQ
+from api.db import get_session
+from api.graphql.queries.main import AllNameSpaces
 from api.graphql.templates.config import custom_dark_make_graphiql_handler
 from starlette_graphene3 import GraphQLApp
 
@@ -16,14 +11,8 @@ from api.graphql.util import MountGraphQLObject, GraphQLAppContext
 
 
 class Query(graphene.ObjectType,
-            MountGraphQLObject(AdminQ),
-            MountGraphQLObject(HomeContentQ),
-            MountGraphQLObject(PostQ),
-            MountGraphQLObject(ProjectQ),
-            MountGraphQLObject(SocialQ),
-            MountGraphQLObject(TagQ),
+            MountGraphQLObject(AllNameSpaces),
             ):
-
     pass
 
 

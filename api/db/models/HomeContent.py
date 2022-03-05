@@ -1,8 +1,8 @@
 from datetime import datetime
 
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, Boolean
 
-from api.db.db import Base
+from api.db import Base
 
 
 class HomeContent(Base):
@@ -11,6 +11,7 @@ class HomeContent(Base):
     homecontentid = Column(Integer, primary_key=True)
     content = Column(String, nullable=False)
     homecontenttype = Column(String, nullable=False)
+    active = Column(Boolean, default=True)
     datecreated = Column(DateTime, default=datetime.now())
 
     def __repr__(self):
