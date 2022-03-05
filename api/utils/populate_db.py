@@ -220,6 +220,8 @@ def populate_database():
 
     session.commit()
 
+# TODO: Dar uma revisada generosa pra melhorar o script de criação/atualização do db
+
 
 Base.metadata.create_all(engine)
 populate_database()
