@@ -1,6 +1,6 @@
 import graphene
 
-from api.graphql.types.admin import AdminType
+from api.graphql.types import AdminType
 from api.graphql.util import WaverGraphQLResolveInfo
 
 

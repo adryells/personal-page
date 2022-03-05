@@ -1,7 +1,7 @@
 import graphene
 
 from api.db.models.Social import Social
-from api.graphql.types.social import SocialType
+from api.graphql.types import SocialType
 from api.graphql.util import WaverGraphQLResolveInfo
 
 

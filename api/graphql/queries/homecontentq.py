@@ -1,7 +1,7 @@
 import graphene
 
 from api.db.models.HomeContent import HomeContent
-from api.graphql.types.homecontent import HomeContentType
+from api.graphql.types import HomeContentType
 from api.graphql.util import WaverGraphQLResolveInfo
 
 

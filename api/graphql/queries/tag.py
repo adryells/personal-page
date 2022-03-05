@@ -1,7 +1,7 @@
 import graphene
 
 from api.db.models.Tag import Tag
-from api.graphql.types.tag import TagType
+from api.graphql.types import TagType
 from api.graphql.util import WaverGraphQLResolveInfo
 
 

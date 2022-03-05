@@ -1,7 +1,7 @@
 import graphene
 
 from api.db.models.Project import Project
-from api.graphql.types.project import ProjectType
+from api.graphql.types import ProjectType
 from api.graphql.util import WaverGraphQLResolveInfo
 
 

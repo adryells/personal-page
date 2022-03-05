@@ -1,7 +1,7 @@
 import graphene
 
 from api.db.models.Post import Post
-from api.graphql.types.post import PostType
+from api.graphql.types import PostType
 from api.graphql.util import WaverGraphQLResolveInfo
 
 
