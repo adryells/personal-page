@@ -5,7 +5,7 @@ from api.graphql.types.post import PostType
 from api.graphql.util import WaverGraphQLResolveInfo
 
 
-class Post(graphene.ObjectType):
+class PostQ(graphene.ObjectType):
     posts = graphene.List(PostType)
 
     def resolve_posts(self, info: WaverGraphQLResolveInfo):

@@ -24,7 +24,6 @@ class Post(Base):
     datecreated = Column(Date, default=datetime.date.today())
     tags = relationship("Tag", secondary=tag_posts)
 
-
     def __repr__(self):
         return f"Post(id={self.postid}, title={self.title}"
 

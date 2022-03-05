@@ -5,9 +5,7 @@ from api.graphql.types.homecontent import HomeContentType
 from api.graphql.util import WaverGraphQLResolveInfo
 
 
-
-
-class HomeContent(graphene.ObjectType):
+class HomeContentQ(graphene.ObjectType):
     home_contents = graphene.List(HomeContentType)
 
     def resolve_home_contents(self, info: WaverGraphQLResolveInfo):

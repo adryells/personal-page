@@ -3,9 +3,10 @@ from typing import Any, Union, Type
 
 import graphene
 from graphene_sqlalchemy import SQLAlchemyObjectType
-from graphql import ResolveInfo
+from graphql import GraphQLResolveInfo
 from sqlalchemy.orm import Session
-from starlette.requests import HTTPConnection
+from starlette.requests import HTTPConnection, Request
+from starlette.websockets import WebSocket
 
 from api.db.models.Admin import Admin
 
@@ -27,13 +28,13 @@ def MountGraphQLObject(object_type: Union[Type[graphene.Mutation], Type[graphene
 
 @dataclass
 class GraphQLAppContext:
-    session: Session
-    background: Any
-    request: HTTPConnection
+    ws: WebSocket = None
+    session: Session = None
+    background: Any = None
+    request: Request = None
     admin: Admin = None
     authorization: str = None
 
-    # necessary because graphene needs context to have this method
     def get(self, o: str):
         return getattr(self, o, None)
 
@@ -41,7 +42,7 @@ class GraphQLAppContext:
         return self.get(key)
 
 
-class WaverGraphQLResolveInfo(ResolveInfo):
+class WaverGraphQLResolveInfo(GraphQLResolveInfo):
     context: GraphQLAppContext
 
 

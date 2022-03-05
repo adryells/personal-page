@@ -5,7 +5,7 @@ from api.graphql.types.tag import TagType
 from api.graphql.util import WaverGraphQLResolveInfo
 
 
-class Tag(graphene.ObjectType):
+class TagQ(graphene.ObjectType):
     tags = graphene.List(TagType)
 
     def resolve_tags(self, info: WaverGraphQLResolveInfo):

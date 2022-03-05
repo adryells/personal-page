@@ -22,4 +22,4 @@ class Tag(Base):
     active = Column(Boolean, default=True)
 
     def __repr__(self):
-        return f"Tag(id={self.tagid}, name={self.name}"
+        return f"Tag(id={self.tagid}, name={self.portuguese_name}"

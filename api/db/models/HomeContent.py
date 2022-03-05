@@ -14,4 +14,4 @@ class HomeContent(Base):
     datecreated = Column(DateTime, default=datetime.now())
 
     def __repr__(self):
-        return f"HomeContent(id={self.homecontentid}, content={self.content}"
+        return f"HomeContent(id={self.homecontentid}"

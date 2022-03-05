@@ -5,7 +5,7 @@ from api.graphql.types.project import ProjectType
 from api.graphql.util import WaverGraphQLResolveInfo
 
 
-class Project(graphene.ObjectType):
+class ProjectQ(graphene.ObjectType):
     projects = graphene.List(ProjectType)
 
     def resolve_projects(self, info: WaverGraphQLResolveInfo):

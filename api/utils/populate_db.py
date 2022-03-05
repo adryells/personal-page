@@ -1,6 +1,6 @@
 import random
-
-from api.db.db import get_session, engine, Base
+from loguru import logger
+from api.db.db import get_session
 from api.db.models.Admin import Admin
 from api.db.models.HomeContent import HomeContent
 from api.db.models.Post import Post
@@ -11,14 +11,15 @@ from api.db.models.Tag import Tag
 from faker import Faker
 
 
-session = get_session()
+session = next(get_session())
 fake = Faker()
 
 
 def populate_admin():
     admins = session.query(Admin).filter(Admin.status == True).all()
     if admins:
-        return "Admin is already existent"
+        logger.info("Admin is already existent")
+        return
 
     admin = Admin(
         username="adryell",
@@ -27,6 +28,7 @@ def populate_admin():
     )
 
     session.add(admin)
+    logger.info("Admin was created!")
 
 
 def populate_home_contents():
@@ -36,6 +38,7 @@ def populate_home_contents():
         homecontentdb = session.query(HomeContent).filter(HomeContent.content == content,
                                                          HomeContent.homecontenttype == contenttypes[_]
                                                          ).one_or_none()
+        logger.info(f"Home Content with type {contenttypes[_]} and content text: {content} already exists")
         if homecontentdb:
             continue
 
@@ -45,6 +48,7 @@ def populate_home_contents():
         )
 
         session.add(home_content)
+        logger.info("HomeContent created!")
 
 
 def populate_tags():
@@ -58,10 +62,12 @@ def populate_tags():
         if has_english_name:
             tagdb = session.query(Tag).filter(Tag.portuguese_name == _[0], Tag.active == True).one_or_none()
             if tagdb:
+                logger.info(f"Tag {tagdb} already exists.")
                 continue
         else:
             tagdb = session.query(Tag).filter(Tag.portuguese_name == _, Tag.active == True).one_or_none()
             if tagdb:
+                logger.info(f"Tag {tagdb} already exists.")
                 continue
 
         tag = Tag(
@@ -71,7 +77,9 @@ def populate_tags():
         )
 
         session.add(tag)
-        session.commit()
+        logger.info(f"Tag {tag.portuguese_name} added.")
+
+    session.commit()
 
 
 def populate_posts():
@@ -88,6 +96,7 @@ def populate_posts():
         ).one_or_none()
 
         if postdb:
+            logger.info(f"Post with same title, description and content already exists.")
             continue
 
         else:
@@ -106,6 +115,7 @@ def populate_posts():
             ]
 
             session.add(post)
+            logger.info(f"Post {post.title} created.")
 
 
 def populate_socials():
@@ -133,6 +143,7 @@ def populate_socials():
         ).one_or_none()
 
         if social_network:
+            logger.info(f"Social Network {social_network} already exists.")
             continue
 
         social_network = Social(
@@ -143,6 +154,7 @@ def populate_socials():
         )
 
         session.add(social_network)
+        logger.info(f"Social network {social_network.name} created")
 
 
 def populate_projects():
@@ -203,6 +215,7 @@ def populate_projects():
         ]
 
         session.add(project)
+        logger.info(f"{project.title} added.")
 
 
 def populate_database():
@@ -217,11 +230,10 @@ def populate_database():
 
     for key, value in func_handler.items():
         value()
+        logger.info(f"All {key} added.")
 
     session.commit()
 
 # TODO: Dar uma revisada generosa pra melhorar o script de criação/atualização do db
 
 
-Base.metadata.create_all(engine)
-populate_database()

@@ -5,7 +5,7 @@ from api.graphql.types.social import SocialType
 from api.graphql.util import WaverGraphQLResolveInfo
 
 
-class Social(graphene.ObjectType):
+class SocialQ(graphene.ObjectType):
     socials = graphene.List(SocialType)
 
     def resolve_socials(self, info: WaverGraphQLResolveInfo):
