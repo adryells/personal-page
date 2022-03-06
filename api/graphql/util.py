@@ -44,10 +44,3 @@ class GraphQLAppContext:
 
 class WaverGraphQLResolveInfo(GraphQLResolveInfo):
     context: GraphQLAppContext
-
-
-class SQLAlchemyObjectArueType(SQLAlchemyObjectType):
-    class Meta:
-        abstract = True
-
-    id = graphene.Field(graphene.Int, required=True)

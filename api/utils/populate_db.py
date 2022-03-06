@@ -200,6 +200,11 @@ def populate_projects():
         "https://github.com/adryells/caxias",
     ]
     for _ in range(len(titles)):
+        project_db = session.query(Project).filter(Project.link == link[_]).all()
+        if project_db:
+            logger.info(f"Project {titles[_]} already exists in db")
+            continue
+
         project = Project(
             title=titles[_],
             english_title=fake.sentence(nb_words=random.randint(1, 3)),
