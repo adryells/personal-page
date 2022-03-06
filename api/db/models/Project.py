@@ -9,7 +9,7 @@ from api.db.models.Tag import tag_projects
 class Project(Base):
     __tablename__ = "projects"
 
-    projectid = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
     title = Column(String, nullable=False)
     english_title = Column(String, default="title")
     description = Column(String, nullable=False)
@@ -23,5 +23,5 @@ class Project(Base):
     tags = relationship("Tag", secondary=tag_projects)
 
     def __repr__(self):
-        return f"Project(id={self.projectid}, title={self.title}"
+        return f"Project(id={self.id}, title={self.title}"
 

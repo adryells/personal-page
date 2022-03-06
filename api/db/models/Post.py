@@ -12,7 +12,7 @@ from api.db.models.Tag import tag_posts
 class Post(Base):
     __tablename__ = "posts"
 
-    postid = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
     title = Column(String, nullable=False)
     english_title = Column(String, default="title")
     description = Column(String, nullable=False)
@@ -25,7 +25,7 @@ class Post(Base):
     tags = relationship("Tag", secondary=tag_posts)
 
     def __repr__(self):
-        return f"Post(id={self.postid}, title={self.title}"
+        return f"Post(id={self.id}, title={self.title}"
 
 
 
