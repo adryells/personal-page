@@ -6,11 +6,14 @@ from api.db.query_utils.project import ProjectQueryUtils
 
 
 class ProjectController(BaseController):
-    def get_all_projects(self, page: int, perpage: int, status: bool) -> List[Project]:
+    def get_all_projects(self, page: int, perpage: int, status: bool, tags: List[str]) -> List[Project]:
         query = ProjectQueryUtils(self.session).get_all_objects_query(Project)
 
         if status:
             query = query.filter(Project.active == True)
+
+        if tags:
+            query = query.filter(Project.tags.icontains(tags))
 
         if page or perpage:
             query = ProjectQueryUtils(self.session).get_all_objects_paginated(Project, page, perpage)
