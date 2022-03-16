@@ -2,18 +2,21 @@ from typing import List, Optional
 
 from api.controllers import BaseController
 from api.db.models.Project import Project
+from api.db.models.Tag import Tag, tag_projects
 from api.db.query_utils.project import ProjectQueryUtils
+from api.db.query_utils.tag import TagQueryUtils
 
 
 class ProjectController(BaseController):
     def get_all_projects(self, page: int, perpage: int, status: bool, tags: List[str]) -> List[Project]:
         query = ProjectQueryUtils(self.session).get_all_objects_query(Project)
 
-        if status:
-            query = query.filter(Project.active == True)
+        if status is not None:
+            query = query.filter(Project.active == status)
 
         if tags:
-            query = query.filter(Project.tags.icontains(tags))
+            tag_ids = [TagQueryUtils(self.session).get_tag_by_name(tag).id for tag in tags]
+            query = query.join(tag_projects, Tag).filter(Tag.id.in_(tag_ids))
 
         if page or perpage:
             query = ProjectQueryUtils(self.session).get_all_objects_paginated(Project, page, perpage)

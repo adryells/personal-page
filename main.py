@@ -1,5 +1,9 @@
+from enum import Enum
+
 import uvicorn
 from fastapi import FastAPI
+from pydantic import BaseModel
+from starlette.responses import HTMLResponse
 
 from api.graphql.schemas import graphql_app
 from api.utils.create_database import init_db
@@ -10,8 +14,8 @@ app.add_route('/graphql', graphql_app)
 
 
 @app.get('/')
-async def graphql():
-    return {"message": "hello"}
+async def root():
+    return HTMLResponse("<a href=http://127.0.0.1:8081/graphql>GRAPHQL</a>")
 
 
 @app.on_event("startup")
