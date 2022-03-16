@@ -21,3 +21,24 @@ class SocialController(BaseController):
             raise Exception(f"Social id: {social_id} not found.")
 
         return social
+
+    def update_social(self, social_id: int, name: str, active: bool, link: str, media: str):
+        social = SocialQueryUtils(self.session).get_object_by_id(Social, social_id)
+        if not social:
+            raise Exception(f"Social id: {social_id} not found.")
+
+        if name:
+            social.name = name
+
+        if active is not None:
+            social.active = active
+
+        if link:
+            social.link = link
+
+        if media:
+            social.media = media
+
+        self.session.commit()
+
+        return social
