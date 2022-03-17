@@ -3,6 +3,7 @@ from enum import Enum
 import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
+from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse
 
 from api.graphql.schemas import graphql_app
@@ -12,6 +13,13 @@ from api.utils.populate_db import populate_database
 app = FastAPI()
 app.add_route('/graphql', graphql_app)
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_origins=["*", ],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get('/')
 async def root():
