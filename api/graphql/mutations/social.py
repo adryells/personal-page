@@ -12,11 +12,13 @@ class InputUpdateSocial(graphene.InputObjectType):
     media = graphene.String()
     active = graphene.Boolean()
 
+
 class InputAddSocial(graphene.InputObjectType):
     name = graphene.String(required=True)
     link = graphene.String(required=True)
     media = graphene.String(required=True)
     active = graphene.Boolean(default_value=True)
+
 
 class UpdateSocial(graphene.Mutation):
     class Arguments:
@@ -26,13 +28,13 @@ class UpdateSocial(graphene.Mutation):
     social = graphene.Field(SocialType)
 
     def mutate(self, info: WaverGraphQLResolveInfo, data: InputUpdateSocial):
-        social = SocialController(info.context.session)\
+        social = SocialController(info.context.session) \
             .update_social(
-                data.social_id,
-                data.name,
-                data.active,
-                data.link,
-                data.media
+            data.social_id,
+            data.name,
+            data.active,
+            data.link,
+            data.media
         )
 
         return UpdateSocial(success=True, social=social)

@@ -9,7 +9,7 @@ class InputAddHomeContent(graphene.InputObjectType):
     content = graphene.String(required=True)
     homecontenttype = graphene.String(required=True)
     active = graphene.Boolean(default_value=True)
-    datecreated = graphene.String()
+    datecreated = graphene.DateTime()
 
 
 class InputUpdateHomeContent(graphene.InputObjectType):
@@ -17,7 +17,7 @@ class InputUpdateHomeContent(graphene.InputObjectType):
     content = graphene.String()
     homecontenttype = graphene.String()
     active = graphene.Boolean()
-    datecreated = graphene.String()
+    datecreated = graphene.DateTime()
 
 
 class AddHomeContent(graphene.Mutation):

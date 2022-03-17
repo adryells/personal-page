@@ -16,7 +16,7 @@ class InputUpdateProject(graphene.InputObjectType):
     link = graphene.String()
     media = graphene.String() # TODO: Migrar todas as edições de midia pra receber id do mediaitem
     active = graphene.Boolean()
-    datecreated = graphene.String()
+    datecreated = graphene.DateTime()
     tags = graphene.List(graphene.String)
 
 
@@ -30,7 +30,7 @@ class InputAddProject(graphene.InputObjectType):
     link = graphene.String(required=True)
     media = graphene.String() # TODO: Migrar todas as adições de midia pra receber id do mediaitem
     active = graphene.Boolean()
-    datecreated = graphene.String()
+    datecreated = graphene.DateTime()
     tags = graphene.List(graphene.String)
 
 

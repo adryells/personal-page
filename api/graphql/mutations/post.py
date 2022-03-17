@@ -15,7 +15,7 @@ class InputAddPost(graphene.InputObjectType):
     english_content = graphene.String()
     media = graphene.String()
     active = graphene.Boolean(default_value=True)
-    datecreated = graphene.String(default_value=datetime.now())
+    datecreated = graphene.DateTime(default_value=datetime.now())
     tags = graphene.List(graphene.String)
 
 
@@ -29,7 +29,7 @@ class InputUpdatePost(graphene.InputObjectType):
     english_content = graphene.String()
     media = graphene.String()
     active = graphene.Boolean()
-    datecreated = graphene.String()
+    datecreated = graphene.DateTime()
     tags = graphene.List(graphene.String)
 
 
