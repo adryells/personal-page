@@ -14,7 +14,7 @@ class Project(Base):
     english_title = Column(String, default="title")
     description = Column(String, nullable=False)
     english_description = Column(String, default="shortdescription")
-    bigdescription = Column(String, default=english_description)
+    bigdescription = Column(String, default="big_description")
     english_bigdescription = Column(String, default="bigdescription")
     link = Column(String, nullable=False)
     media = Column(String)

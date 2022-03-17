@@ -6,7 +6,7 @@ from api.graphql.util import WaverGraphQLResolveInfo
 
 
 class InputUpdateSocial(graphene.InputObjectType):
-    social_id = graphene.Int()
+    social_id = graphene.Int(required=True)
     name = graphene.String()
     link = graphene.String()
     media = graphene.String()
