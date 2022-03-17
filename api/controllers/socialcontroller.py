@@ -42,3 +42,16 @@ class SocialController(BaseController):
         self.session.commit()
 
         return social
+
+    def add_social(self, name: str, link: str, media: str, active: bool) -> Social:
+        new_social = Social(
+            name=name,
+            media=media,
+            link=link,
+            active=active
+        )
+
+        self.session.add(new_social)
+        self.session.commit()
+
+        return new_social
