@@ -25,7 +25,7 @@ class TagController(BaseController):
 
         return query.all()
 
-    def add_or_update_tag(self, portuguese_name: str, english_name: str, active: bool
+    def add_or_update_tag(self, portuguese_name: str = None, english_name: str = None, active: bool = True
         ) -> Tag:
 
         tag_db = TagQueryUtils(self.session).get_tag_by_name(portuguese_name)
