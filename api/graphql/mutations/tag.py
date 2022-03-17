@@ -24,3 +24,17 @@ class AddOrUpdateTag(graphene.Mutation):
         )
 
         return AddOrUpdateTag(tag=tag)
+
+
+class RemoveTag(graphene.Mutation):
+    class Arguments:
+        post_id = graphene.Int()
+        project_id = graphene.Int()
+        tag_id = graphene.Int(required=True)
+
+    success = graphene.Boolean()
+
+    def mutate(self, info: WaverGraphQLResolveInfo, post_id: int, project_id: int, tag_id: int):
+        success = TagController(info.context.session).remove_tag_from(post_id, project_id, tag_id)
+
+        return RemoveTag(success=success)
