@@ -24,3 +24,27 @@ class TagController(BaseController):
             query = TagQueryUtils(self.session).get_all_objects_paginated(Tag, page, perpage)
 
         return query.all()
+
+    def add_or_update_tag(self, portuguese_name: str, english_name: str, active: bool
+        ) -> Tag:
+
+        tag_db = TagQueryUtils(self.session).get_tag_by_name(portuguese_name)
+        if tag_db:
+            if english_name:
+                tag_db.english_name = english_name
+            if active is not None:
+                tag_db.active = active
+
+            self.session.commit()
+            return tag_db
+
+        tag = Tag(
+            portuguese_name=portuguese_name,
+            english_name=english_name,
+            active=active
+        )
+
+        self.session.add(tag)
+        self.session.commit()
+
+        return tag
