@@ -158,7 +158,7 @@ def populate_socials():
 
 
 def populate_projects():
-    # TODO: to get from github api
+    # TODO: to get from github api when i organize fully my repos
 
     titles = [
         "imcPHP", "Tempo_Anime", "aestheticCALC", "PageStyleConfiguration", "PassaTempo-Eureka",
