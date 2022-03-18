@@ -23,9 +23,12 @@ def populate_admin():
 
     admin = Admin(
         username="adryell",
-        password=123456,
         status=True,
     )
+
+    admin.salt = admin.generate_salt()
+    admin.password = admin.generate_password("12345678", admin.salt)
+    admin.token = admin.generate_token()
 
     session.add(admin)
     logger.info("Admin was created!")
