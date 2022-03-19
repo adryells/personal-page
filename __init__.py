@@ -6,11 +6,13 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse
 
 from api.graphql.schemas import graphql_app
-from api.views.random_view import teste
+from api.views import views
 
 app = FastAPI()
 app.add_route('/graphql', graphql_app)
-app.include_router(teste)
+
+for route in views:
+    app.include_router(route)
 
 app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
 templates = Jinja2Templates(directory="frontend/templates")
