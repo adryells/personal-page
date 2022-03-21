@@ -10,7 +10,7 @@ class SocialController(BaseController):
         socials = SocialQueryUtils(self.session).get_all_objects_query(Social)
 
         if page or perpage:
-            socials = SocialQueryUtils(self.session).get_all_objects_paginated(Social, page, perpage)
+            socials = SocialQueryUtils(self.session).paginate_query(query, page, perpage)
 
         return socials.all()
 

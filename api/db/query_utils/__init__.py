@@ -21,7 +21,7 @@ class DbBaseUtils:
 
         return query
 
-    def get_all_objects_paginated(self, model_class, page: int, perpage: int) -> Query:
-        query = self.get_all_objects_query(model_class).limit(perpage).offset((page - 1) * perpage)
+    def paginate_query(self, query: Query, page: int, perpage: int) -> Query:
+        query = query.limit(perpage).offset((page - 1) * perpage)
 
         return query

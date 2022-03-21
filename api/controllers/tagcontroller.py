@@ -25,7 +25,7 @@ class TagController(BaseController):
             query = query.filter(Tag.active == active)
 
         if page or perpage:
-            query = TagQueryUtils(self.session).get_all_objects_paginated(Tag, page, perpage)
+            query = TagQueryUtils(self.session).paginate_query(query, page, perpage)
 
         return query.all()
 

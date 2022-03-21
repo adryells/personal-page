@@ -21,7 +21,7 @@ class PostController(BaseController):
             query = query.filter(Post.active == status)
 
         if page or perpage:
-            query = PostQueryUtils(self.session).get_all_objects_paginated(Post, page, perpage)
+            query = PostQueryUtils(self.session).paginate_query(query, page, perpage)
 
         return query.all()
 

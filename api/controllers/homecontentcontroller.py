@@ -13,7 +13,7 @@ class HomeContentController(BaseController):
             query = query.filter(HomeContent.active == status)
 
         if page or perpage:
-            query = HomeContentQueryUtils(self.session).get_all_objects_paginated(HomeContent, page, perpage)
+            query = HomeContentQueryUtils(self.session).paginate_query(query, page, perpage)
 
         return query.all()
 

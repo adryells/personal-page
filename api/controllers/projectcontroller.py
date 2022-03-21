@@ -19,7 +19,7 @@ class ProjectController(BaseController):
             query = query.join(tag_projects, Tag).filter(Tag.id.in_(tag_ids))
 
         if page or perpage:
-            query = ProjectQueryUtils(self.session).get_all_objects_paginated(Project, page, perpage)
+            query = ProjectQueryUtils(self.session).paginate_query(query, page, perpage)
 
         return query.all()
 
