@@ -10,12 +10,13 @@ uvicorn = "*"
 starlette-graphene3 = "==0.5.1"
 sqlalchemy = "*"
 requests = "*"
-jinja2 = "*"
+jinja2 = "==3.0.3"
 loguru = "*"
 graphene = "*"
 fastapi = "*"
 faker = "*"
 alembic = "*"
+pytest = "*"
 
 [dev-packages]
 

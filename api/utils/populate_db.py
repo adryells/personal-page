@@ -225,23 +225,3 @@ def populate_projects():
         session.add(project)
         logger.info(f"{project.title} added.")
 
-
-def populate_database():
-    func_handler = {
-        "admin": populate_admin,
-        "home_content": populate_home_contents,
-        "tag": populate_tags,
-        "post": populate_posts,
-        "social": populate_socials,
-        "project": populate_projects
-    }
-
-    for key, value in func_handler.items():
-        value()
-        logger.info(f"All {key} added.")
-
-    session.commit()
-
-# TODO: Dar uma revisada generosa pra melhorar o script de criação/atualização do db
-
-
