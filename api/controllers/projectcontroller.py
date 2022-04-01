@@ -1,6 +1,7 @@
 from typing import List, Optional
 
 from api.controllers import BaseController
+from api.controllers.tagcontroller import TagController
 from api.db.models.Project import Project
 from api.db.models.Tag import Tag, tag_projects
 from api.db.query_utils.project import ProjectQueryUtils
@@ -89,7 +90,7 @@ class ProjectController(BaseController):
         )
 
         if tags:
-            new_project.tags = [TagQueryUtils(self.session).get_tag_by_name(tag) for tag in tags]
+            [new_project.tags.append(TagController(self.session).add_or_update_tag(tag)) for tag in tags]
 
         self.session.add(new_project)
         self.session.commit()
