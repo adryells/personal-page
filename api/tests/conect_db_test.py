@@ -5,7 +5,8 @@ from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 from api.utils.settings import GeneralSettings
 
 settings = GeneralSettings()
-db_url = settings.db_params(db_name=Faker().pystr())
+test_db_name = Faker().pystr()
+db_url = settings.db_params(db_name=test_db_name)
 
 
 def execute_in_db_connection(command: str = ""):

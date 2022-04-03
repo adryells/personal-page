@@ -1,32 +1,30 @@
-
 import loguru
 from sqlalchemy.engine import Engine
 
-from api.db import engine, Base
+from api.db import build_engine, Base
 from api.db.models import HomeContent, Social, Post, Tag, Admin, Project
-from api.utils.populate_db import populate_projects,\
+from api.utils.populate_db import populate_projects, \
     populate_admin, populate_socials, populate_tags, populate_posts, populate_home_contents
 
 
 class DBManager:
 
-    def drop_all_tables(self, engine_: Engine):
+    def drop_all_tables(self, engine_: Engine = build_engine()):
         loguru.logger.info("Dropping database...")
-        Base.metadata.drop_all(engine_ or engine)
+        Base.metadata.drop_all(engine_)
 
-    def create_all_tables(self, engine_: Engine, populate: bool = False):
+    def create_all_tables(self, engine_: Engine = build_engine(), populate: bool = False):
         loguru.logger.info("Creating database...")
-        Base.metadata.create_all(engine_ or engine)
+        Base.metadata.create_all(engine_)
 
         if populate:
             self.populate()
 
-    def init_db(self, engine_: Engine):
-        self.drop_all_tables(engine_ or engine)
-        self.create_all_tables(engine_ or engine)
+    def init_db(self, engine_: Engine = build_engine()):
+        self.drop_all_tables(engine_)
+        self.create_all_tables(engine_)
 
     def populate(self):
-
         loguru.logger.info("Populating database...")
 
         functions = [
@@ -42,4 +40,5 @@ class DBManager:
 
 
 DBM = DBManager()
+DBM.create_all_tables()
 DBM.populate()

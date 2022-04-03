@@ -4,6 +4,7 @@ import os
 class GeneralSettings:
 
     BASE_DIRECTORY = os.path.join(os.path.dirname(__file__))
+    DB_URL_WITHOUT_DB_NAME = 'postgresql+psycopg2://postgres:12345678@127.0.0.1:5433/'
     DB_URL = 'postgresql+psycopg2://postgres:12345678@127.0.0.1:5433/wavers'
 
     def db_params(self,

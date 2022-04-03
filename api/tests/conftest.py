@@ -6,19 +6,18 @@ from sqlalchemy.orm import Session, close_all_sessions
 from starlette.testclient import TestClient
 import pytest
 
-from api.db import get_session, engine
-from api.tests.conect_db_test import settings, execute_in_db_connection
+from api.db import get_session, build_engine, settings
+from api.tests.conect_db_test import execute_in_db_connection, test_db_name
 from api.utils.create_database import DBManager
 from main import app
 
 DBM = DBManager()
 
 """ TODO: Ao rodar um teste a database principal está tendo os dados apagados pq to passando o engine principal, ent devo criar um fake engine com o msm fluxo do main """
+
+
 @pytest.fixture(scope="session", autouse=True)
 def create_test_database():
-    db_url = settings.db_params()
-    test_db_name = Faker().pystr()
-
     logger.info(f'Creating Database "{test_db_name}" for running tests...')
 
     execute_in_db_connection(
@@ -38,14 +37,14 @@ def create_test_database():
 
 @pytest.fixture(scope="session", autouse=True)
 def create_db_schema(create_test_database):
-    DBM.init_db(engine)
+    DBM.create_all_tables(populate=True)
 
 
 @pytest.fixture(scope='session', autouse=True)
 def get_database_connection(create_db_schema) -> Engine:
-    yield engine
+    yield build_engine(settings.DB_URL_WITHOUT_DB_NAME + test_db_name)
 
-    engine.dispose()
+    build_engine(settings.DB_URL_WITHOUT_DB_NAME + test_db_name).dispose()
 
 
 @pytest.fixture
