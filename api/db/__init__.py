@@ -1,19 +1,20 @@
 from typing import Iterator
 
 from sqlalchemy import create_engine
+from sqlalchemy.engine import Engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
-import os
 
-BASE_DIRECTORY = os.path.join(os.path.dirname(__file__))
-SQLALCHEMY_DATABASE_URL = f'sqlite:///{os.path.join(BASE_DIRECTORY, "../../database.db")}'
+from api.utils.settings import GeneralSettings
 
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL,
-    connect_args={"check_same_thread": False},
-    )
+settings = GeneralSettings()
 
-SessionLocal = sessionmaker(bind=engine, autoflush=False)
+
+def build_engine(url: str = settings.DB_URL) -> Engine:
+    return create_engine(url)
+
+
+SessionLocal = sessionmaker(bind=build_engine(), autoflush=False)
 session = SessionLocal()
 Base = declarative_base()
 

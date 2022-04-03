@@ -10,7 +10,6 @@ from api.db.models.Tag import Tag
 
 from faker import Faker
 
-
 session = next(get_session())
 fake = Faker()
 
@@ -33,14 +32,16 @@ def populate_admin():
     session.add(admin)
     logger.info("Admin was created!")
 
+    session.commit()
+
 
 def populate_home_contents():
     for _ in range(2):
         content = fake.text()
-        contenttypes = ["whwoiam","whoido","hometitle","homefooter"]
+        contenttypes = ["whwoiam", "whoido", "hometitle", "homefooter"]
         homecontentdb = session.query(HomeContent).filter(HomeContent.content == content,
-                                                         HomeContent.homecontenttype == contenttypes[_]
-                                                         ).one_or_none()
+                                                          HomeContent.homecontenttype == contenttypes[_]
+                                                          ).one_or_none()
         logger.info(f"Home Content with type {contenttypes[_]} and content text: {content} already exists")
         if homecontentdb:
             continue
@@ -52,6 +53,8 @@ def populate_home_contents():
 
         session.add(home_content)
         logger.info("HomeContent created!")
+
+        session.commit()
 
 
 def populate_tags():
@@ -114,11 +117,13 @@ def populate_posts():
             )
 
             post.tags = [
-                random.choice(session.query(Tag).filter(Tag.active == True).all())for _ in range(random.randint(1, 3))
+                random.choice(session.query(Tag).filter(Tag.active == True).all()) for _ in range(random.randint(1, 3))
             ]
 
             session.add(post)
             logger.info(f"Post {post.title} created.")
+
+    session.commit()
 
 
 def populate_socials():
@@ -158,6 +163,8 @@ def populate_socials():
 
         session.add(social_network)
         logger.info(f"Social network {social_network.name} created")
+
+    session.commit()
 
 
 def populate_projects():
@@ -225,23 +232,4 @@ def populate_projects():
         session.add(project)
         logger.info(f"{project.title} added.")
 
-
-def populate_database():
-    func_handler = {
-        "admin": populate_admin,
-        "home_content": populate_home_contents,
-        "tag": populate_tags,
-        "post": populate_posts,
-        "social": populate_socials,
-        "project": populate_projects
-    }
-
-    for key, value in func_handler.items():
-        value()
-        logger.info(f"All {key} added.")
-
     session.commit()
-
-# TODO: Dar uma revisada generosa pra melhorar o script de criação/atualização do db
-
-
