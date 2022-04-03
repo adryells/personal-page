@@ -11,7 +11,7 @@ class GeneralSettings:
                   user: str = "postgres",
                   password: str = "12345678",
                   host: str = "127.0.0.1",
-                  port: str = "6000",
+                  port: str = "5433",
                   db_name: str = "wavers"
                   ):
 

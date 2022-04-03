@@ -1,4 +1,6 @@
 import uvicorn
+import os
+
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -11,11 +13,14 @@ from api.views import views
 app = FastAPI()
 app.add_route('/graphql', graphql_app)
 
+STATIC_DIR = os.path.join(os.path.dirname(__file__), "frontend/static")
+TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "frontend/templates")
+
 for route in views:
     app.include_router(route)
 
-app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
-templates = Jinja2Templates(directory="frontend/templates")
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+templates = Jinja2Templates(directory=TEMPLATES_DIR)
 
 app.add_middleware(
     CORSMiddleware,
@@ -25,10 +30,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get('/')
 async def root():
-    return HTMLResponse("<a href=http://127.0.0.1:8081/graphql>GRAPHQL</a>")
+    return HTMLResponse("<a href=http://0.0.0.0:5000/graphql>GRAPHQL</a>")
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, port=8081, host='127.0.0.1')
+    uvicorn.run(app, port=5000, host='0.0.0.0')
