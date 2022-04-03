@@ -13,8 +13,6 @@ from main import app
 
 DBM = DBManager()
 
-""" TODO: Ao rodar um teste a database principal está tendo os dados apagados pq to passando o engine principal, ent devo criar um fake engine com o msm fluxo do main """
-
 
 @pytest.fixture(scope="session", autouse=True)
 def create_test_database():

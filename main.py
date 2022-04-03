@@ -33,7 +33,7 @@ app.add_middleware(
 
 @app.get('/')
 async def root():
-    return HTMLResponse("<a href=http://0.0.0.0:5000/graphql>GRAPHQL</a>")
+    return HTMLResponse("<a href=http://localhost:5000/graphql>GRAPHQL</a>")
 
 
 if __name__ == '__main__':
