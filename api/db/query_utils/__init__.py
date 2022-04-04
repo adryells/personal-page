@@ -1,8 +1,9 @@
 from typing import Type, Optional
 
+from sqlalchemy import func
 from sqlalchemy.orm import Session, Query
 
-from api.db import get_session, Base
+from api.db import get_session
 
 
 class DbBaseUtils:
@@ -25,3 +26,8 @@ class DbBaseUtils:
         query = query.limit(perpage).offset((page - 1) * perpage)
 
         return query
+
+    def count_query(self, query: Query) -> int:
+        count = query.session.execute(query.statement.with_only_columns([func.count()])).scalar()
+
+        return count

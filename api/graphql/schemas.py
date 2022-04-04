@@ -28,4 +28,3 @@ graphql_app = GraphQLApp(
     context_value=make_context,
     on_get=custom_dark_make_graphiql_handler()
 )
-# só um teste
