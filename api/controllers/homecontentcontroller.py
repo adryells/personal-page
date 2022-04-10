@@ -9,8 +9,7 @@ class HomeContentController(BaseController):
     def get_all_home_contents(self, status: bool, page: int, perpage: int) -> List[HomeContent]:
         query = HomeContentQueryUtils(self.session).get_all_objects_query(HomeContent)
 
-        if status:
-            query = query.filter(HomeContent.active == status)
+        query = query.filter(HomeContent.active == status)
 
         if page or perpage:
             query = HomeContentQueryUtils(self.session).paginate_query(query, page, perpage)
