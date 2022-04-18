@@ -70,10 +70,10 @@ class TagController(BaseController):
 
         if project_id:
 
-            project = ProjectQueryUtils(self.session).get_object_by_id(Project, post_id)
+            project = ProjectQueryUtils(self.session).get_object_by_id(Project, project_id)
 
             if not project:
-                raise Exception(f"Post id: {project_id} not found.")
+                raise Exception(f"Project id: {project_id} not found.")
 
             tag = self.check_if_tag_exists(tag_id)
 

@@ -4,6 +4,7 @@ from api.controllers.tagcontroller import TagController
 from api.graphql.types import TagType
 from api.graphql.util import WaverGraphQLResolveInfo
 
+
 class InputTag(graphene.InputObjectType):
     portuguese_name = graphene.String(required=True)
     english_name = graphene.String()

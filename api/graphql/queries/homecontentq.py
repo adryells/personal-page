@@ -1,7 +1,6 @@
 import graphene
 
 from api.controllers.homecontentcontroller import HomeContentController
-from api.db.models.HomeContent import HomeContent
 from api.graphql.types import HomeContentType
 from api.graphql.util import WaverGraphQLResolveInfo
 
