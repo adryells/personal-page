@@ -114,6 +114,7 @@ class TestPost:
         for post in request['data']['allnamespaces']['post']['posts']:
             assert post["active"] == status
 
+    # TODO: Verify why this test fails sometimes
     def test_get_all_posts_filtered_by_one_tag(self, client, session):
         tag = random.choice(TagQueryUtils(session).get_all_objects_query(Tag).all())
 

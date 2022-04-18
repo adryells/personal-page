@@ -29,7 +29,7 @@ class TestAddHomeContent:
 
         return response.json()
 
-    def test_add_home_content_succes(self, client):
+    def test_add_home_content_success(self, client):
         variables = {
             "content": Faker().pystr(),
             "homecontenttype": choice(["whoiam", "whatido"]),
