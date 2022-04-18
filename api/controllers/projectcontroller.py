@@ -9,7 +9,7 @@ from api.db.query_utils.tag import TagQueryUtils
 
 
 class ProjectController(BaseController):
-    def get_all_projects(self, page: int, perpage: int, status: bool, tags: List[str]) -> List[Project]:
+    def get_all_projects(self, page: int, perpage: int, status: bool, tags: List[str], order: str) -> List[Project]:
         query = ProjectQueryUtils(self.session).get_all_objects_query(Project)
 
         if status is not None:
@@ -18,6 +18,16 @@ class ProjectController(BaseController):
         if tags:
             tag_ids = [TagQueryUtils(self.session).get_tag_by_name(tag).id for tag in tags]
             query = query.join(tag_projects, Tag).filter(Tag.id.in_(tag_ids))
+
+        if order:
+            order_options = {
+                "RECENT": Project.datecreated.desc,
+                "OLD": Project.datecreated.asc,
+                "ALPHABETICAL": Project.title.asc,
+                "REVERSE_ALPHA": Project.title.desc,
+            }
+
+            query = query.order_by(order_options[order]())
 
         if page or perpage:
             query = ProjectQueryUtils(self.session).paginate_query(query, page, perpage)
