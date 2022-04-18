@@ -10,7 +10,7 @@ from api.db.query_utils.tag import TagQueryUtils
 
 
 class PostController(BaseController):
-    def get_all_posts(self, page: int, perpage: int, status: bool, tags: List[str]) -> List[Post]:
+    def get_all_posts(self, page: int, perpage: int, status: bool, tags: List[str], order: str) -> List[Post]:
         query = PostQueryUtils(self.session).get_all_objects_query(Post)
 
         if tags:
@@ -19,6 +19,16 @@ class PostController(BaseController):
 
         if status is not None:
             query = query.filter(Post.active == status)
+
+        if order:
+            order_options = {
+                "RECENT": Post.datecreated.desc,
+                "OLD": Post.datecreated.asc,
+                "ALPHABETICAL": Post.title.asc,
+                "REVERSE_ALPHA": Post.title.desc,
+            }
+
+            query = query.order_by(order_options[order]())
 
         if page or perpage:
             query = PostQueryUtils(self.session).paginate_query(query, page, perpage)
