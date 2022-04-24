@@ -20,7 +20,7 @@ class ProjectQ(graphene.ObjectType):
 
     def resolve_projects(self, info: WaverGraphQLResolveInfo, page: int, perpage: int, status: bool, tags: List[str],
                          order: BasicOrderEnum):
-        return ProjectController(info.context.session).get_all_projects(page, perpage, status, tags, order.value)
+        return ProjectController(info.context.session).get_all_projects(page, perpage, status, tags, order)
 
     def resolve_project(self, info: WaverGraphQLResolveInfo, project_id: int):
         return ProjectController(info.context.session).get_project_by_id(project_id)

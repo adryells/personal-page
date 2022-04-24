@@ -28,9 +28,9 @@ class PostController(BaseController):
                 "REVERSE_ALPHA": Post.title.desc,
             }
 
-            query = query.order_by(order_options[order]())
+            query = query.order_by(order_options[order.value]())
 
-        if page or perpage:
+        if page and perpage:
             query = PostQueryUtils(self.session).paginate_query(query, page, perpage)
 
         return query.all()
@@ -87,20 +87,38 @@ class PostController(BaseController):
                     active: bool,
                     datecreated: str,
                     tags: List[str]
-                    ) -> Post:
+                    ) -> Optional[Post]:
         post = PostQueryUtils(self.session).get_object_by_id(Post, post_id)
         if not post:
             raise Exception(f"Post id: {post_id} not found.")
 
-        if title: post.title = title
-        if english_title: post.english_title = english_title
-        if description: post.description = description
-        if english_description: post.english_description = english_description
-        if content: post.content = content
-        if english_content: post.english_content = english_content
-        if media: post.media = media
-        if active is not None: post.active = active
-        if datecreated: post.datecreated = datecreated
+        if title:
+            post.title = title
+
+        if english_title:
+            post.english_title = english_title
+
+        if description:
+            post.description = description
+
+        if english_description:
+            post.english_description = english_description
+
+        if content:
+            post.content = content
+
+        if english_content:
+            post.english_content = english_content
+
+        if media:
+            post.media = media
+
+        if active is not None:
+            post.active = active
+
+        if datecreated:
+            post.datecreated = datecreated
+
         if tags:
             for tag in tags:
                 tag = TagController(self.session).add_or_update_tag(tag)

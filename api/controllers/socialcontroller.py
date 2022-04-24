@@ -10,7 +10,7 @@ class SocialController(BaseController):
         socials = SocialQueryUtils(self.session).get_all_objects_query(Social)
 
         if page or perpage:
-            socials = SocialQueryUtils(self.session).paginate_query(query, page, perpage)
+            socials = SocialQueryUtils(self.session).paginate_query(socials, page, perpage)
 
         return socials.all()
 
@@ -22,7 +22,7 @@ class SocialController(BaseController):
 
         return social
 
-    def update_social(self, social_id: int, name: str, active: bool, link: str, media: str):
+    def update_social(self, social_id: int, name: str, active: bool, link: str, media: str) -> Optional[Social]:
         social = SocialQueryUtils(self.session).get_object_by_id(Social, social_id)
         if not social:
             raise Exception(f"Social id: {social_id} not found.")

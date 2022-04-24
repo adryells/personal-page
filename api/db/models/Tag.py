@@ -17,7 +17,7 @@ class Tag(Base):
     __tablename__ = "tags"
 
     id = Column(Integer, primary_key=True)
-    portuguese_name = Column(String, nullable=False, default="tag_name")
+    portuguese_name = Column(String, nullable=False)
     english_name = Column(String, nullable=True, default="tag_name")
     active = Column(Boolean, default=True)
 

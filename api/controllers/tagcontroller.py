@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from api.controllers import BaseController
 from api.db.models.Post import Post
@@ -10,7 +10,7 @@ from api.db.query_utils.tag import TagQueryUtils
 
 
 class TagController(BaseController):
-    def get_tag_by_id(self, tagid: int) -> Tag:
+    def get_tag_by_id(self, tagid: int) -> Optional[Tag]:
         tag = TagQueryUtils(self.session).get_object_by_id(Tag, tagid)
 
         if not tag:

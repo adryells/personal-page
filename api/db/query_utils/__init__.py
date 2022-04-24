@@ -1,4 +1,4 @@
-from typing import Type, Optional
+import random
 
 from sqlalchemy import func
 from sqlalchemy.orm import Session, Query
@@ -31,3 +31,8 @@ class DbBaseUtils:
         count = query.session.execute(query.statement.with_only_columns([func.count()])).scalar()
 
         return count
+
+    def get_random_register_from_table(self, table):
+        random_register = random.randrange(0, self.session.query(table).count())
+
+        return self.session.query(table)[random_register]

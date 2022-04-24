@@ -38,4 +38,3 @@ class Admin(Base):
             dklen=128
         )
         return self.password
-

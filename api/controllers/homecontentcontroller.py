@@ -1,4 +1,5 @@
-from typing import List
+import datetime
+from typing import List, Optional
 
 from api.controllers import BaseController
 from api.db.models.HomeContent import HomeContent
@@ -9,7 +10,7 @@ class HomeContentController(BaseController):
     def get_all_home_contents(self, status: bool, page: int, perpage: int) -> List[HomeContent]:
         query = HomeContentQueryUtils(self.session).get_all_objects_query(HomeContent)
 
-        if status is False:
+        if status is not None:
             query = query.filter(HomeContent.active == status)
 
         if page or perpage:
@@ -21,8 +22,8 @@ class HomeContentController(BaseController):
                          content: str,
                          homecontenttype: str,
                          active: bool,
-                         datecreated: str
-                         ):
+                         datecreated: datetime
+                         ) -> HomeContent:
         new_home_content = HomeContent(
             content=content,
             homecontenttype=homecontenttype,
@@ -36,22 +37,28 @@ class HomeContentController(BaseController):
         return new_home_content
 
     def update_home_content(self,
-                         home_content_id: int,
-                         content: str,
-                         homecontenttype: str,
-                         active: bool,
-                         datecreated: str
-                         ):
+                            home_content_id: int,
+                            content: str,
+                            homecontenttype: str,
+                            active: bool,
+                            datecreated: str
+                            ) -> Optional[HomeContent]:
         home_content = HomeContentQueryUtils(self.session).get_object_by_id(HomeContent, home_content_id)
         if not home_content:
             raise Exception("Home Content not found.")
 
-        if content: home_content.content = content
-        if homecontenttype: home_content.homecontenttype = homecontenttype
-        if active is not None: home_content.active = active
-        if datecreated: home_content.datecreated = datecreated
+        if content:
+            home_content.content = content
+
+        if homecontenttype:
+            home_content.homecontenttype = homecontenttype
+
+        if active is not None:
+            home_content.active = active
+
+        if datecreated:
+            home_content.datecreated = datecreated
 
         self.session.commit()
 
         return home_content
-

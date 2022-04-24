@@ -14,7 +14,7 @@ class InputUpdateProject(graphene.InputObjectType):
     bigdescription = graphene.String()
     english_bigdescription = graphene.String()
     link = graphene.String()
-    media = graphene.String() # TODO: Migrar todas as edições de midia pra receber id do mediaitem
+    media = graphene.String()
     active = graphene.Boolean()
     datecreated = graphene.DateTime()
     tags = graphene.List(graphene.String)
@@ -28,13 +28,13 @@ class InputAddProject(graphene.InputObjectType):
     bigdescription = graphene.String()
     english_bigdescription = graphene.String()
     link = graphene.String(required=True)
-    media = graphene.String() # TODO: Migrar todas as adições de midia pra receber id do mediaitem
+    media = graphene.String()
     active = graphene.Boolean()
     datecreated = graphene.DateTime()
     tags = graphene.List(graphene.String)
 
 
-class UpdateProject(graphene.Mutation): # Adicionar validações para cada campo
+class UpdateProject(graphene.Mutation):
     class Arguments:
         data = InputUpdateProject()
 
@@ -59,7 +59,7 @@ class UpdateProject(graphene.Mutation): # Adicionar validações para cada campo
         return UpdateProject(project=project)
 
 
-class AddProject(graphene.Mutation): # Adicionar validações para cada campo
+class AddProject(graphene.Mutation):
     class Arguments:
         data = InputAddProject()
 

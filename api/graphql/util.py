@@ -2,10 +2,9 @@ from dataclasses import dataclass
 from typing import Any, Union, Type
 
 import graphene
-from graphene_sqlalchemy import SQLAlchemyObjectType
 from graphql import GraphQLResolveInfo
 from sqlalchemy.orm import Session
-from starlette.requests import HTTPConnection, Request
+from starlette.requests import Request
 from starlette.websockets import WebSocket
 
 from api.db.models.Admin import Admin
