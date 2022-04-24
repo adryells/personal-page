@@ -1,19 +1,19 @@
 import os
 
 
-class GeneralSettings:
+class Settings:
 
     BASE_DIRECTORY = os.path.join(os.path.dirname(__file__))
-    DB_URL_WITHOUT_DB_NAME = 'postgresql+psycopg2://postgres:12345678@127.0.0.1:5433/'
+    TEST_DB_URL = 'postgresql+psycopg2://postgres:12345678@127.0.0.1:5433/'
     DB_URL = 'postgresql+psycopg2://postgres:12345678@127.0.0.1:5433/wavers'
 
     def db_params(self,
                   schema_name: str = "postgresql",
-                  user: str = "postgres",
-                  password: str = "12345678",
-                  host: str = "127.0.0.1",
-                  port: str = "5433",
-                  db_name: str = "wavers"
+                  user: str = "",
+                  password: str = "",
+                  host: str = "",
+                  port: str = "",
+                  db_name: str = ""
                   ):
 
         db_data = {
@@ -26,11 +26,3 @@ class GeneralSettings:
         }
 
         return db_data
-
-
-class Development(GeneralSettings):
-    ...
-
-
-class Production(GeneralSettings):
-    ...

@@ -6,4 +6,3 @@ class BasicOrderEnum(graphene.Enum):
     REVERSE_ALPHA = "REVERSE_ALPHA"
     RECENT = "RECENT"
     OLD = "OLD"
-

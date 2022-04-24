@@ -81,6 +81,7 @@ class TestHomeContent:
 
     # TODO: Develop a test for page bigger than 1 or improve the existent
 
+    # TODO: This is currently failing
     def test_get_all_home_contents_filtered_by_status(self, client):
         status = random.choice([True, False])
 

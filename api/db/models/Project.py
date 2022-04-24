@@ -11,11 +11,11 @@ class Project(Base):
 
     id = Column(Integer, primary_key=True)
     title = Column(String, nullable=False)
-    english_title = Column(String, default="title")
+    english_title = Column(String, default=title)
     description = Column(String, nullable=False)
-    english_description = Column(String, default="shortdescription")
-    bigdescription = Column(String, default="big_description")
-    english_bigdescription = Column(String, default="bigdescription")
+    english_description = Column(String, default=description)
+    bigdescription = Column(String)
+    english_bigdescription = Column(String, default=bigdescription)
     link = Column(String, nullable=False)
     media = Column(String)
     active = Column(Boolean, default=True)
@@ -24,4 +24,3 @@ class Project(Base):
 
     def __repr__(self):
         return f"Project(id={self.id}, title={self.title}"
-

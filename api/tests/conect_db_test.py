@@ -1,20 +1,37 @@
+import re
+
 import psycopg2
-from faker import Faker
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
-
-from api.utils.settings import GeneralSettings
-
-settings = GeneralSettings()
-test_db_name = Faker().pystr()
-db_url = settings.db_params(db_name=test_db_name)
+from pydantic import BaseModel
 
 
-def execute_in_db_connection(command: str = ""):
+class DatabaseParameters(BaseModel):
+    schema_name: str = "postgresql"
+    user: str
+    password: str
+    host: str
+    port: int
+    db_name: str
+
+    @classmethod
+    def from_db_url(cls, db_url: str) -> 'DatabaseParameters':
+        schema, _, user, password, host, port, db_name = re.search(
+            r"(.*?)\+(.*?)\:\/\/(.*?)\:(.*?)\@(.*)\:(.*)\/(.*)", db_url).groups()
+
+        return cls(schema_name=schema,
+                   user=user,
+                   password=password,
+                   host=host,
+                   port=port,
+                   db_name=db_name)
+
+
+def execute_in_db_connection(db: DatabaseParameters, command: str):
     db_connection = psycopg2.connect(
-        user=db_url["user"],
-        password=db_url["password"],
-        host=db_url["host"],
-        port=db_url["port"],
+        user=db.user,
+        password=db.password,
+        host=db.host,
+        port=db.port,
         dbname="postgres"
     )
 
@@ -27,4 +44,3 @@ def execute_in_db_connection(command: str = ""):
     cursor.close()
 
     db_connection.close()
-

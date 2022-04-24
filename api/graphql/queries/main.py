@@ -1,10 +1,10 @@
 import graphene
 
-from api.graphql.queries.adminq import AdminQ
-from api.graphql.queries.homecontentq import HomeContentQ
-from api.graphql.queries.postq import PostQ
+from api.graphql.queries.admin import AdminQ
+from api.graphql.queries.homecontent import HomeContentQ
+from api.graphql.queries.post import PostQ
 from api.graphql.queries.project import ProjectQ
-from api.graphql.queries.socialq import SocialQ
+from api.graphql.queries.social import SocialQ
 from api.graphql.queries.tag import TagQ
 
 # TODO: Reuse: When changed modelid to id, to use SQLALchemyObjectArueType in queries

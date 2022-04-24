@@ -20,7 +20,7 @@ class PostQ(graphene.ObjectType):
 
     def resolve_posts(self, info: WaverGraphQLResolveInfo, page: int, perpage: int, status: bool, tags: List[str],
                       order: BasicOrderEnum):
-        return PostController(info.context.session).get_all_posts(page, perpage, status, tags, order.value)
+        return PostController(info.context.session).get_all_posts(page, perpage, status, tags, order)
 
     def resolve_post(self, info: WaverGraphQLResolveInfo, post_id: int):
         return PostController(info.context.session).get_post_by_id(post_id)

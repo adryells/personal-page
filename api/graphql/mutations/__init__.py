@@ -8,6 +8,8 @@ from api.graphql.mutations.tag import AddOrUpdateTag, RemoveTag
 from api.graphql.util import MountGraphQLObject
 
 
+# TODO: Adicionar validações para cada campo
+
 class Mutation(graphene.ObjectType,
                MountGraphQLObject(UpdateSocial),
                MountGraphQLObject(UpdateProject),

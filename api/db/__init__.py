@@ -5,16 +5,18 @@ from sqlalchemy.engine import Engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 
-from api.utils.settings import GeneralSettings
+from api.utils.settings import Settings
 
-settings = GeneralSettings()
+settings = Settings()
 
 
 def build_engine(url: str = settings.DB_URL) -> Engine:
     return create_engine(url)
 
 
-SessionLocal = sessionmaker(bind=build_engine(), autoflush=False)
+engine = build_engine()
+
+SessionLocal = sessionmaker(bind=engine, autoflush=False)
 session = SessionLocal()
 Base = declarative_base()
 
