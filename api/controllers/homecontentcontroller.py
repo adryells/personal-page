@@ -24,9 +24,15 @@ class HomeContentController(BaseController):
                          active: bool,
                          datecreated: datetime
                          ) -> HomeContent:
+
+        home_content_type_db = HomeContentQueryUtils(self.session).get_home_content_type_by_slug(slug=homecontenttype)
+
+        if not home_content_type_db:
+            raise Exception("This home content type not exists.")
+
         new_home_content = HomeContent(
             content=content,
-            homecontenttype=homecontenttype,
+            homecontenttype=home_content_type_db,
             active=active,
             datecreated=datecreated
         )

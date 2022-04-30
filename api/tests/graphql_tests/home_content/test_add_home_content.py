@@ -38,6 +38,7 @@ class TestAddHomeContent:
 
         request = self.request_add_home_content(client, variables)
 
+        # TODO: This failling
         assert request['data']['AddHomeContent']['homecontent']['active'] == variables["active"]
         assert request['data']['AddHomeContent']['homecontent']['homecontenttype'] == variables["homecontenttype"]
         assert request['data']['AddHomeContent']['homecontent']['content'] == variables["content"]
