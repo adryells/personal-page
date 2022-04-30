@@ -2,7 +2,7 @@ from random import choice
 
 from faker import Faker
 
-from api.db.models.HomeContent import HomeContent
+from api.db.models.HomeContent import HomeContent, HomeContentType
 from api.db.query_utils.homecontent import HomeContentQueryUtils
 
 
@@ -15,7 +15,7 @@ class TestUpdateHomeContent:
                   active
                   content
                   datecreated
-                  homecontenttype
+                  homecontenttypeId
                   id
                 }
               }
@@ -34,10 +34,11 @@ class TestUpdateHomeContent:
 
     def test_update_home_content_success(self, client, session):
         actual_home_content = choice(HomeContentQueryUtils(session).get_all_objects_query(HomeContent).all())
+        home_content_type = HomeContentQueryUtils(session).get_random_register_from_table(HomeContentType)
 
         variables = {
             "content": Faker().pystr(),
-            "homecontenttype": "whoiam" if actual_home_content.homecontenttype == "whoido" else "whoido",
+            "homecontenttype": home_content_type.slug,
             "active": choice([True, False]),
             "hcid": actual_home_content.id
         }
@@ -45,7 +46,7 @@ class TestUpdateHomeContent:
         request = self.request_update_home_content(client, variables)
 
         assert request['data']['UpdateHomeContent']['homecontent']['active'] == variables["active"]
-        assert request['data']['UpdateHomeContent']['homecontent']['homecontenttype'] == variables["homecontenttype"]
+        assert request['data']['UpdateHomeContent']['homecontent']['homecontenttypeId'] == home_content_type.id
         assert request['data']['UpdateHomeContent']['homecontent']['content'] == variables["content"]
 
     def test_update_home_content_with_invalid_home_content(self, client, session):

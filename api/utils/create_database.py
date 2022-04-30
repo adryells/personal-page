@@ -40,5 +40,6 @@ class DBManager:
 
 
 DBM = DBManager()
+DBM.drop_all_tables()
 DBM.create_all_tables()
 DBM.populate()

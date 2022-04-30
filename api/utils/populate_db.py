@@ -2,13 +2,15 @@ import random
 from loguru import logger
 from api.db import get_session
 from api.db.models.Admin import Admin
-from api.db.models.HomeContent import HomeContent
+from api.db.models.HomeContent import HomeContent, HomeContentType
 from api.db.models.Post import Post
 from api.db.models.Project import Project
 from api.db.models.Social import Social
 from api.db.models.Tag import Tag
 
 from faker import Faker
+
+from api.db.query_utils.homecontent import HomeContentQueryUtils
 
 session = next(get_session())
 fake = Faker()
@@ -35,20 +37,42 @@ def populate_admin():
     session.commit()
 
 
+def populate_home_content_type():
+    contenttypes = ["whwoiam", "whoido", "hometitle", "homefooter"]
+
+    for index, contenttype in enumerate(contenttypes):
+        if HomeContentQueryUtils(session).get_home_content_type_by_slug(contenttype):
+            continue
+
+        home_content_type = HomeContentType(
+            slug=contenttype
+        )
+
+        session.add(home_content_type)
+
+    session.commit()
+
+
 def populate_home_contents():
-    for _ in range(2):
+    populate_home_content_type()
+
+    home_content_types = HomeContentQueryUtils(session).get_all_objects_query(HomeContentType).all()
+
+    for _ in range(4):
         content = fake.text()
-        contenttypes = ["whwoiam", "whoido", "hometitle", "homefooter"]
+        home_content_type = random.choice(home_content_types)
+
         homecontentdb = session.query(HomeContent).filter(HomeContent.content == content,
-                                                          HomeContent.homecontenttype == contenttypes[_]
+                                                          HomeContent.homecontenttype == home_content_type
                                                           ).one_or_none()
-        logger.info(f"Home Content with type {contenttypes[_]} and content text: {content} already exists")
+        logger.info(f"Home Content with type {home_content_type} and content text: {content} already exists")
+
         if homecontentdb:
             continue
 
         home_content = HomeContent(
             content=content,
-            homecontenttype=contenttypes[_]
+            homecontenttype=home_content_type
         )
 
         session.add(home_content)

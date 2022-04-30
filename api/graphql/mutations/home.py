@@ -15,7 +15,7 @@ class InputAddHomeContent(graphene.InputObjectType):
 class InputUpdateHomeContent(graphene.InputObjectType):
     homecontent_id = graphene.Int()
     content = graphene.String()
-    homecontenttype = graphene.String()
+    homecontenttype = graphene.String() # TODO: Transform in enum
     active = graphene.Boolean()
     datecreated = graphene.DateTime()
 
