@@ -41,6 +41,9 @@ def populate_home_content_type():
     contenttypes = ["whwoiam", "whoido", "hometitle", "homefooter"]
 
     for index, contenttype in enumerate(contenttypes):
+        if HomeContentQueryUtils(session).get_home_content_type_by_slug(contenttype):
+            continue
+
         home_content_type = HomeContentType(
             slug=contenttype
         )

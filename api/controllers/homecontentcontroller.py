@@ -57,7 +57,8 @@ class HomeContentController(BaseController):
             home_content.content = content
 
         if homecontenttype:
-            home_content.homecontenttype = homecontenttype
+            home_content_type_db = HomeContentQueryUtils(self.session).get_home_content_type_by_slug(homecontenttype)
+            home_content.homecontenttype = home_content_type_db
 
         if active is not None:
             home_content.active = active
