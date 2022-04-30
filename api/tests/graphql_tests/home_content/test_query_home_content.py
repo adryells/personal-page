@@ -36,7 +36,7 @@ class TestHomeContent:
             homeContents {
                 id
                 content
-                homecontenttype
+                homecontenttypeId
                 active
                 datecreated
               }
@@ -55,7 +55,7 @@ class TestHomeContent:
                     homeContents (page: $page, perpage: $perpage){
                         id
                         content
-                        homecontenttype
+                        homecontenttypeId
                         active
                         datecreated
                       }
@@ -89,7 +89,7 @@ class TestHomeContent:
                             homeContents (status: $status){
                                 id
                                 content
-                                homecontenttype
+                                homecontenttypeId
                                 active
                                 datecreated
                               }

@@ -15,7 +15,7 @@ class TestUpdateHomeContent:
                   active
                   content
                   datecreated
-                  homecontenttype
+                  homecontenttypeId
                   id
                 }
               }
