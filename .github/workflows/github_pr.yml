@@ -1,0 +1,30 @@
+name: Features's Commit
+on:
+  pull_request:
+    types: [ closed ]
+    branches: [ 'feature/*','feat/*','test' ]
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Discord Message Notify
+        uses: appleboy/discord-action@0.0.3
+        with:
+           webhook_id: "990993239316238437"
+           webhook_token: "disJu3mBSu58ZvLYHSoUFsAHnjKFHB7oXJVuazImxNyyxNY1yohrIDoe1_J140VQeMHs"
+           username: 'Commit-son'
+           message: |+
+              <@&578594495038226436>
+      - name: Discord Notification
+        uses: sarisia/actions-status-discord@v1
+        if: always()
+        with:
+          webhook: "https://discord.com/api/webhooks/802193504032915546/PuoL1xH8u1AkO9McW7iKbzBJEsP1DF5Nfb7IsoxRDhpGMS_YEr3cwgU-bgwZFSM3AIEr"
+          title: "Pull Request"
+          description: |+
+            Um novo `pull request` foi aceito na branch `${{ github.ref_name }}`!
+            
+            Rode os comandos `git fetch --all` e um `git rebase origin/${{ github.ref_name }}`em sua branch caso ela tenha sido criada a partir desta branch.
+            `"Por justiça, e todas as coisas brilhantes!" - Lux`
+          image: "https://cdn.discordapp.com/attachments/1011373587812327534/1011373619861016666/Vector.png"
+          color: 0x13D2D4
