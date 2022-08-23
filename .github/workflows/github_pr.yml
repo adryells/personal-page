@@ -12,7 +12,7 @@ jobs:
         with:
            webhook_id: "990993239316238437"
            webhook_token: "disJu3mBSu58ZvLYHSoUFsAHnjKFHB7oXJVuazImxNyyxNY1yohrIDoe1_J140VQeMHs"
-#           avatar_url: "https://cdn.discordapp.com/attachments/1011373587812327534/1011373619861016666/Vector.png"
+           avatar_url: "https://cdn.discordapp.com/attachments/1011373587812327534/1011373619861016666/Vector.png"
            username: 'Commit-son'
            message: |+
              <@&958080207061942303>
