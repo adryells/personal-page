@@ -21,10 +21,11 @@ jobs:
         with:
           webhook: "https://discord.com/api/webhooks/990993239316238437/disJu3mBSu58ZvLYHSoUFsAHnjKFHB7oXJVuazImxNyyxNY1yohrIDoe1_J140VQeMHs"
           title: "Pull Request"
+          username: 'Commit-son'
           description: |+
             Um novo `pull request` foi aceito na branch `${{ github.ref_name }}`!
             Rode os comandos `git fetch --all` e um `git rebase origin/${{ github.ref_name }}`em sua branch caso ela tenha sido criada a partir desta branch.
             `"the way is always the same." -`
           image: "https://cdn.discordapp.com/attachments/1011373587812327534/1011373619861016666/Vector.png"
-          avatar_url: "https://cdn.discordapp.com/attachments/1011373587812327534/1011373619861016666/Vector.png"
+          avatar_url: "https://cdn.discordapp.com/attachments/1011373587812327534/1011720054867505223/octo.png"
           color: 0x13D2D4
