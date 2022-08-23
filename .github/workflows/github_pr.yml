@@ -2,7 +2,7 @@ name: Features's Commit
 on:
   pull_request:
     types: [ closed ]
-    branches: ['master']
+    branches: ['develop']
 jobs:
   notify:
     runs-on: ubuntu-latest
