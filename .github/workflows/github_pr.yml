@@ -1,7 +1,8 @@
 name: Features's Commit
 on:
-  push:
-    branches: ['master']
+  pull_request:
+    types: [ closed ]
+    branches: [ 'feature/*', 'feat/*', 'test' ]
 jobs:
   notify:
     runs-on: ubuntu-latest
