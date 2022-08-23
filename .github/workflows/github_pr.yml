@@ -10,16 +10,16 @@ jobs:
       - name: Discord Message Notify
         uses: appleboy/discord-action@0.0.3
         with:
-           webhook_id: "1011381370003656726"
+           webhook_id: "990993239316238437"
            webhook_token: "DXvMDWlzpF-qFaycRRxI0vGgcoNmDBpUiyFczUatyePizZDixWYvgFh94fU66PYHz-dq"
            username: 'Commit-son'
            message: |+
-             <@&1011456717579632672>
+             <@&958080207061942303>
       - name: Discord Notification
         uses: sarisia/actions-status-discord@v1
         if: always()
         with:
-          webhook: "https://discord.com/api/webhooks/1011381370003656726/DXvMDWlzpF-qFaycRRxI0vGgcoNmDBpUiyFczUatyePizZDixWYvgFh94fU66PYHz-dq"
+          webhook: "https://discord.com/api/webhooks/990993239316238437/disJu3mBSu58ZvLYHSoUFsAHnjKFHB7oXJVuazImxNyyxNY1yohrIDoe1_J140VQeMHs"
           title: "Pull Request"
           description: |+
             Um novo `pull request` foi aceito na branch `${{ github.ref_name }}`!
