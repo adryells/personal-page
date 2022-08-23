@@ -27,5 +27,5 @@ jobs:
             Rode os comandos `git fetch --all` e um `git rebase origin/${{ github.ref_name }}` em sua branch caso ela tenha sido criada a partir desta branch.
             `"Não deixe seus sonhos serem apenas sonhos" - Illaoi`
           image: "https://cdn.discordapp.com/attachments/1011373587812327534/1011373619861016666/Vector.png"
-          avatar_url: "https://cdn.discordapp.com/attachments/1011373587812327534/1011373619861016666/Vector.png"
+          avatar_url: "https://cdn.discordapp.com/attachments/1011373587812327534/1011720054867505223/octo.png"
           color: 0x13D2D4
