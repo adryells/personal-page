@@ -14,7 +14,7 @@ jobs:
            webhook_token: "DXvMDWlzpF-qFaycRRxI0vGgcoNmDBpUiyFczUatyePizZDixWYvgFh94fU66PYHz-dq"
            username: 'Commit-son'
            message: |+
-             <@&959101061103255572>
+             <@&1011380920328130570>
       - name: Discord Notification
         uses: sarisia/actions-status-discord@v1
         if: always()
