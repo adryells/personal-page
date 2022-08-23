@@ -19,7 +19,7 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         if: always()
         with:
-          webhook: "https://discord.com/api/webhooks/1011381370003656726/DXvMDWlzpF-qFaycRRxI0vGgcoNmDBpUiyFczUatyePizZDixWYvgFh94fU66PYHz-dq"
+          webhook: "https://discord.com/api/webhooks/990993239316238437/disJu3mBSu58ZvLYHSoUFsAHnjKFHB7oXJVuazImxNyyxNY1yohrIDoe1_J140VQeMHs"
           title: "Pull Request"
           description: |+
             Um novo `pull request` foi aceito na branch `${{ github.ref_name }}`!
