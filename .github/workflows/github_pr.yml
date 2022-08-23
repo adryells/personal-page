@@ -1,7 +1,6 @@
 name: Features's Commit
 on:
   pull_request:
-    types: [ closed ]
     branches: ['master']
 jobs:
   notify:
