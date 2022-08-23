@@ -10,8 +10,8 @@ jobs:
       - name: Discord Message Notify
         uses: appleboy/discord-action@0.0.3
         with:
-           webhook_id: "990993239316238437"
-           webhook_token: "disJu3mBSu58ZvLYHSoUFsAHnjKFHB7oXJVuazImxNyyxNY1yohrIDoe1_J140VQeMHs"
+           webhook_id: "1011381370003656726"
+           webhook_token: "DXvMDWlzpF-qFaycRRxI0vGgcoNmDBpUiyFczUatyePizZDixWYvgFh94fU66PYHz-dq"
            username: 'Commit-son'
            message: aaa
 #      - name: Discord Notification
