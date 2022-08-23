@@ -10,11 +10,11 @@ jobs:
       - name: Discord Message Notify
         uses: appleboy/discord-action@0.0.3
         with:
-          webhook_id: "1011381370003656726"
-          webhook_token: "DXvMDWlzpF-qFaycRRxI0vGgcoNmDBpUiyFczUatyePizZDixWYvgFh94fU66PYHz-dq"
+          webhook_id: "990993239316238437"
+          webhook_token: "disJu3mBSu58ZvLYHSoUFsAHnjKFHB7oXJVuazImxNyyxNY1yohrIDoe1_J140VQeMHs"
           username: 'Commit-son'
           message: |+
-            <@&1011380920328130570>
+            <@&958080207061942303>
       - name: Discord Notification
         uses: sarisia/actions-status-discord@v1
         if: always()
@@ -26,5 +26,5 @@ jobs:
             Rode os comandos `git fetch --all` e um `git rebase origin/${{ github.ref_name }}`em sua branch caso ela tenha sido criada a partir desta branch.
             `"the way is always the same." -`
           image: "https://cdn.discordapp.com/attachments/1011373587812327534/1011373619861016666/Vector.png"
-          avatar_url: "https://static.wikia.nocookie.net/naruto/images/3/33/Naruto_Uzumaki_%28Parte_I_-_HD%29.png/revision/latest?cb=20160316113315&path-prefix=pt-br"
+          avatar_url: "https://cdn.discordapp.com/attachments/1011373587812327534/1011373619861016666/Vector.png"
           color: 0x13D2D4
