@@ -2,7 +2,7 @@ name: Features's Commit
 on:
   pull_request:
     types: [ closed ]
-    branches: [ 'feature/*', 'feat/*', 'test' ]
+    branches: [ 'master' ]
 jobs:
   notify:
     runs-on: ubuntu-latest
@@ -10,12 +10,11 @@ jobs:
       - name: Discord Message Notify
         uses: appleboy/discord-action@0.0.3
         with:
-           webhook_id: "1011381370003656726"
-           webhook_token: "DXvMDWlzpF-qFaycRRxI0vGgcoNmDBpUiyFczUatyePizZDixWYvgFh94fU66PYHz-dq"
-#           avatar_url: "https://cdn.discordapp.com/attachments/1011373587812327534/1011373619861016666/Vector.png"
-           username: 'Commit-son'
-           message: |+
-             <@&958080207061942303>
+          webhook_id: "1011381370003656726"
+          webhook_token: "DXvMDWlzpF-qFaycRRxI0vGgcoNmDBpUiyFczUatyePizZDixWYvgFh94fU66PYHz-dq"
+          username: 'Commit-son'
+          message: |+
+            <@&959101061103255572>
       - name: Discord Notification
         uses: sarisia/actions-status-discord@v1
         if: always()
@@ -24,8 +23,7 @@ jobs:
           title: "Pull Request"
           description: |+
             Um novo `pull request` foi aceito na branch `${{ github.ref_name }}`!
-
             Rode os comandos `git fetch --all` e um `git rebase origin/${{ github.ref_name }}`em sua branch caso ela tenha sido criada a partir desta branch.
-            `"Não deixe seus sonhos serem apenas sonhos" - Illaoi`
+            `"the way is always the same." -`
           image: "https://cdn.discordapp.com/attachments/1011373587812327534/1011373619861016666/Vector.png"
           color: 0x13D2D4
